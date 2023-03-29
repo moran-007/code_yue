@@ -1,0 +1,61 @@
+* {
+    /* 初始化 清除页面元素的内外边距 */
+    padding: 0;
+    margin: 0;
+    /* 盒子模型 */
+    box-sizing: border-box;
+}
+
+body {
+    /* 弹性布局 让页面元素垂直+水平居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 让页面始终占浏览器可视区域总高度 */
+    height: 100%;
+    /* 背景渐变色 */
+    background: rgba(255, 255, 255, 0);
+}
+
+.allUser {
+    /* display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center; */
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #fff0;
+}
+
+.bodySelf .selectCarPlace {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* float: left; */
+}
+
+.bodySelf .selectCarPlace .selectCarPlaceBox {
+    /* display: none; */
+    display: flex;
+    height: 100%;
+    width: 600px;
+    background: salmon;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.el-table {
+    background-color: #fff0;
+}
+
+.el-table td.el-table__cell,
+.el-table th.el-table__cell.is-leaf {
+    border-bottom: 1px solid #facacab3;
+}
+
+.el-table tr,
+.el-table th.el-table__cell {
+    background-color: transparent !important;
+}

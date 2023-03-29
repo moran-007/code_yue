@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车位共享</title>
+    <link rel="shortcut icon" href="../../img/title.ico" />
+
+
+    <script src="../../js/vue.js" charset="utf-8"></script>
+    <script src="../../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../Element-ui/theme-chalk/index.css" />
+    <script src="../../js/axios-0.18.0.js"></script>
+
+    <link rel="stylesheet" href="./css/order.css">
+
+
+
+    <style>
+        .demo-table-expand {
+            font-size: 0;
+        }
+        
+        .demo-table-expand label {
+            width: 90px;
+            color: #99a9bf;
+        }
+        
+        .demo-table-expand .el-form-item {
+            margin-right: 0;
+            margin-bottom: 0;
+            width: 50%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="bodySelf">
+        <template>
+        <el-table
+          :data="tableData"
+          style="width: 100% ; background-color: transparent !important;">
+          <el-table-column  type="index"  width="50">
+          </el-table-column>
+          <el-table-column type="expand">
+            <template slot-scope="props">
+              <el-form label-position="left" inline class="demo-table-expand">
+               
+                <el-form-item label="订单id">
+                  <span>{{ props.row.id }}</span>
+                </el-form-item>
+                <el-form-item label="用户id">
+                  <span>{{ props.row.userTable.userId }}</span>
+                </el-form-item>
+                
+                <el-form-item label="联系方式">
+                  <span>{{ props.row.userTable.phone }}</span>
+                </el-form-item>
+                <el-form-item label="车牌号">
+                  <span>{{ props.row.orderPlateNumber }}</span>
+                </el-form-item>
+                <el-form-item label="预留电话">
+                  <span>{{ props.row.orderPhone }}</span>
+                </el-form-item>
+
+
+
+                <el-form-item label="创建时间">
+                  <span>{{ props.row.createTime }}</span>
+                </el-form-item>
+                <el-form-item label="停车时长" v-if=" props.row.state !== 2">
+                  <span v-if="durationList.find((item) => item.id === props.row.id)">
+                    {{ durationList.find((item) => item.id === props.row.id).duration }}
+                  </span>
+                  <span v-else>
+                    {{  props.row.id }}
+                    {{ durationList}}
+                    计算中
+                  </span>
+                    <!-- <span>{{ props.duration }}</span> -->
+                  <!-- <span>{{ formatDuration(props.row.createTime, props.row.payTime) }}</span> -->
+                </el-form-item>
+                <el-form-item label="支付时间">
+                  <span>{{ props.row.payTime }}</span>
+                </el-form-item>
+                <el-form-item label="更新时间">
+                  <span>{{ props.row.updateTime }}</span>
+                </el-form-item>
+                <el-form-item label="订单状态">
+                
+                  <span>
+                    {{ props.row.state === 0 ? '待支付' : props.row.state === 1 ? '已支付' : props.row.state === 2 ? '已取消' : '未知状态' }}
+                  </span>
+                </el-form-item>
+
+               
+              </el-form>
+            </template>
+        </el-table-column>
+        <!-- <el-table-column label="订单编号" prop="id">
+        </el-table-column> -->
+        <el-table-column label="车位名称" prop="carTable1.ownership">
+        </el-table-column>
+        <el-table-column label="车牌号" prop="orderPlateNumber">
+        </el-table-column>
+        <el-table-column label="预留电话" prop="orderPhone">
+        </el-table-column>
+        <el-table-column label="订单状态" prop="state">
+            <template slot-scope="scope">
+          <span>
+            {{ scope.row.state === 0 ? '待支付' : scope.row.state === 1 ? '已支付' : scope.row.state === 2 ? '已取消' : '未知状态' }}
+          </span>
+        </template>
+        </el-table-column>
+        </el-table>
+        </template>
+    </div>
+    <script src="./js/order.js"></script>
+</body>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../../js/vue.js" charset="utf-8"></script>
+    <script src="../../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../Element-ui/theme-chalk/index.css" />
+
+    <script src="../../js/axios-0.18.0.js"></script>
+
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .el-table .warning-row {
+            background: oldlace;
+        }
+
+        .el-table .success-row {
+            background: #f0f9eb;
+        }
+        /* .el-table .el-button {
+            margin-top: 2px;
+            margin-bottom: 2px;
+            margin-right: 3px;
+            margin-left: 3px;
+        }
+         */
+
+        .demo-form-inline {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="allUser">
+        <div class="main">
+            <el-table :data="userSon">
+                </el-table-column>
+                <el-table-column type="index" min-width="50" label="序号">
+                </el-table-column>
+                <el-table-column prop="name" label="姓名" min-width="60">
+                </el-table-column>
+                <el-table-column prop="id" label="手机号" min-width="120">
+                </el-table-column>
+                <el-table-column label="操作" min-width="120">
+                    <template slot-scope="scope">
+                        <el-button @click="showUser(scope.$index, scope.row)" type="danger" size="mini">
+                        重置
+                        </el-button>
+                        <el-dialog  :visible.sync="ShowData" title="重置密码">
+                            <el-form :model="changePsd" status-icon :rules="rules" ref="changePsd" label-width="100px" class="demo-ruleForm">
+                                <el-form-item label="密码" prop="newPasswd">
+                                  <el-input type="password" v-model="changePsd.newPasswd" autocomplete="off"></el-input>
+                                </el-form-item>
+                                <el-form-item label="确认密码" prop="checkPass">
+                                  <el-input type="password" v-model="changePsd.checkPass" autocomplete="off"></el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button type="primary" @click="submitForm('changePsd')">提交</el-button>
+                                    <el-button @click="resetForm('changePsd')">重置</el-button>
+                                  </el-form-item>
+                            </el-form>
+
+                        </el-dialog></template>
+
+
+                </el-table-column>
+            </el-table>
+
+
+            </template>
+
+        </div>
+    </div>
+    <script src="js/changeSonPsd.js">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+
+    <script src="../js/vue.js" charset="utf-8"></script>
+    <script src="../Element-ui/index.js" charset="utf-8"></script>
+
+    <script src="../js/vue.js" charset="UTF-8"></script>
+    <script src="../js/axios.js"></script>
+    <link rel="stylesheet" href="../Element-ui/theme-chalk/index.css" />
+    <link href="../css/register.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="div-right">
+        <form :model="user" id="register" class="register" method="post">
+            <h2>用户注册</h2>
+            <div class="register_box">
+
+                <input type="text" v-model="user.username" @blur="name" id="username" name="username" onkeyup="this.value=this.value.replace(/[, ]/g,'')" required />
+                <label for="username"><span id="name1">姓名</span></label>
+            </div>
+            <div class="register_box">
+                <input type="password" required="required" v-model="user.password" @blur="psd" id="password" name="password" />
+                <label for="password"><span id="psd_one">请输入6-20位密码</span></label>
+
+            </div>
+            <div class="register_box">
+                <input type="password" required="required" id="repeat" @blur="psd2" />
+                <label for="repeat"><span id="psd_two">请确认密码</span></label>
+            </div>
+            <div class="register_box" id="phone_box">
+
+                <input type="text" @blur="phoneRule" v-model="user.phone" id="phone" name="phone" onkeyup="this.value=this.value.replace(/[, ]/g,'')" required />
+                <label for="phone"><span id="phoneLab">手机号</span></label>
+            </div>
+            <div class="register_box" id="age_box">
+
+                <input type="text" @blur="ages" v-model="user.email" id="age" name="age" onkeyup="this.value=this.value.replace(/[, ]/g,'')" required></input>
+                <label for="age"><span id="sgeLab">邮箱</span></label>
+
+            </div>
+
+
+
+
+            <input type="button" id="submit_btn" value="注册" @click="addUser()" />
+            <a style="padding-top: 6px;  text-decoration: none;" href="../index.html ">
+                    已有账号，直接登录
+ </a>
+
+        </form>
+
+
+    </div>
+    <script src="../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../Element-ui/theme-chalk/index.css" />
+    <script src="../js/register.js">
+    </script>
+    <script>
+    </script>
+
+</body>
+
+</html>

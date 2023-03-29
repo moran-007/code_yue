@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link rel="shortcut icon" href="./img/title.ico" />
+
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="./js/vue.js" charset="UTF-8"></script>
+    <script src="./Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./Element-ui/theme-chalk/index.css" />
+    <script src="./js/axios.js"></script>
+</head>
+
+<body>
+    <p>
+        <br />
+        <div class="div-right">
+            <form :model="user" id="login" class="login" method="post">
+                <h2>用户登录</h2>
+                <div class="login_box">
+                    <input v-model="user.phone" type="text" id="username" name="username" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
+                    <label for="username">手机号</label>
+                </div>
+
+                <div class="login_box">
+                    <input v-model="user.password" type="password" id="password" name="password" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
+                    <label for="password">密码</label>
+                </div>
+                <div class="login_box">
+                    权限：<select name="Stitchtype" id="Stitchtype">
+                    <option value="User" selected="selected">用户</option>
+                    <option value="admin">管理员</option>
+                    </select>
+                </div>
+
+                <br/>
+                <span type="submit" id="submit_btn" value="登录" @click="loginUser">登录</span>
+
+                <a href="./pages/register.html">注册</a>
+            </form>
+        </div>
+
+        <!-- <div><a href="pages/test/index.html">全部测试</a></div> -->
+
+        <script src="./js/login.js">
+        </script>
+</body>
+
+</html>

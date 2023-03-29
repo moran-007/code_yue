@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="mysql.properties"/>
+
+    <typeAliases>
+         <package name="com.yue.entity"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driverClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+<!--    <environments default="development">-->
+
+<!--        <environment id="development">-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--&lt;!&ndash;                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <property name="url" value="jdbc:mysql:///moran006?useSSL=false&amp;useServerPrepStmts=true&amp;allowPublicKeyRetrieval=true"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <property name="username" value="moran006"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <property name="password" value="123456789"/>&ndash;&gt;-->
+
+<!--                <property name="driver" value="${jdbc.driverClassName}"/>-->
+<!--                <property name="url" value="${jdbc.url}"/>-->
+<!--                <property name="username" value="${jdbc.username}"/>-->
+<!--                <property name="password" value="${jdbc.password}"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+    <mappers>
+        <!--扫描Mapper-->
+        <package name="com.yue.mapper"/>
+    </mappers>
+</configuration>

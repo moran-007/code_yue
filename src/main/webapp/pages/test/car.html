@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="../../img/title.ico" />
+
+
+    <script src="../../js/vue.js" charset="utf-8"></script>
+    <script src="../../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../Element-ui/theme-chalk/index.css" />
+    <script src="../../js/axios-0.18.0.js"></script>
+
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div class="bodySelf">
+        <h1>欢迎来到车位共享社会</h1>
+        <br>
+        <el-button type="primary" @click="appointment()" style="width: 100%">预约车位</el-button>
+
+        <div class="selectCarPlace">
+            123
+            <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
+
+            <!-- <el-dialog title="收货地址" :visible.sync="dialogTableVisible"> -->
+            <el-table :data="gridData">
+                <el-table-column property="carId" label="id" width="150"></el-table-column>
+                <el-table-column property="dUserId" label="userId" width="200"></el-table-column>
+                <el-table-column property="rootTable2.username" label="username"></el-table-column>
+            </el-table>
+            <!-- </el-dialog> -->
+            <div>[{ carId: 4000000, dId: 3000020, dUserId: 0, ownership: "DCACA", rootTable2: { dId: 0, id: 0, username: "123" } }]
+            </div>
+            <!-- Form -->
+            <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
+
+            <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+                <el-form :model="form">
+                    <el-form-item label="活动名称" :label-width="formLabelWidth">
+                        <el-input v-model="form.name" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动区域" :label-width="formLabelWidth">
+                        <el-select v-model="form.region" placeholder="请选择活动区域">
+                            <el-option label="区域一" value="shanghai"></el-option>
+                            <el-option label="区域二" value="beijing"></el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                </div>
+            </el-dialog>
+        </div>
+    </div>
+    <script src="./car.js">
+    </script>
+</body>
+
+</html>

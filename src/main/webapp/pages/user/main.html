@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车位共享</title>
+    <link rel="shortcut icon" href="../../img/title.ico" />
+
+
+    <script src="../../js/vue.js" charset="utf-8"></script>
+    <script src="../../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../Element-ui/theme-chalk/index.css" />
+    <script src="../../js/axios-0.18.0.js"></script>
+
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div class="bodySelf">
+        <h1>欢迎来到车位共享社会</h1>
+        <el-button type="primary" @click="appointment()" style=" min-width: 60px;">预约车位</el-button>
+
+        <div class="selectCarPlace">
+            <div class="selectCarPlaceBox" id="selectCarPlaceBox">
+
+                <el-form :model="form">
+                    <!-- <el-form-item label="活动名称" :label-width="formLabelWidth">
+                        <el-input v-model="form.name" autocomplete="off"></el-input>
+                    </el-form-item> -->
+                    <el-form-item label="活动区域" :label-width="formLabelWidth">
+                        <el-select clearable v-model="gridData.dId" id="select_root" @change="applicantTypes" placeholder="活动区域">
+                            <el-option v-for="item in Did" :value="item.id" :key="item.id" :label="item.name"></el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-form>
+
+
+                <!-- <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                </div> -->
+                <br>
+
+                <div>{{carportData.carId}}</div>
+                <template>
+                    <el-table :data="carportData"
+                    ref="filterTable"
+                    style="width: 100%">
+                    <el-table-column  type="index"  width="50">
+                    </el-table-column>
+                    
+                    <el-table-column prop="ownership" label="编号" >
+                    </el-table-column>
+                    <el-table-column prop="plateNumber" label="车牌号" >
+                    </el-table-column>
+                    <el-table-column prop="dUserId" label="地址">
+                    </el-table-column>
+
+                    <el-table-column prop="cState.stateName" label="车位状态" width="100" :filters="stateValue" :filter-method="filterTag">
+                        <template slot-scope="scope">
+                            <el-tag el-tag effect="plain":type="scope.row.cState.stateName ==='空闲' ? 'success' : 'primary'"disable-transitions>{{scope.row.cState.stateName}}</el-tag>
+                        </template>
+                </el-table-column>
+                <el-table-column label="操作" width="auto">
+                    <template slot-scope="scope">
+                        <el-button
+                            size="mini"
+                            @click="confirm(scope.$index, scope.row)">编辑</el-button>
+                        </template>
+                </el-table-column>
+
+                </el-table>
+                </template>
+            </div>
+        </div>
+        <el-dialog title="信息确认" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+            <!-- <span>请确认你的车辆信息及联系方式</span>
+            <br> {{userData.num}}
+            <br> {{userData.phone}}
+
+            <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span> -->
+            <el-form :model="selfData" ref="selfData" :rules="rules" label-width="100px" class="demo-ruleForm">
+                <el-form-item label="车牌号" prop="plateNumber">
+                    <el-input v-model="selfData.plateNumber" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="联系方式" prop="phone">
+                    <el-input v-model="selfData.phone" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('selfData')">提交</el-button>
+                    <el-button @click="resetForm('selfData')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+    </div>
+    <script src="./js/main.js">
+    </script>
+</body>
+
+</html>

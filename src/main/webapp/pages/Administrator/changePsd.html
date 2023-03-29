@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车位共享</title>
+    <link rel="shortcut icon" href="../../img/title.ico" />
+
+
+    <script src="../../js/vue.js" charset="utf-8"></script>
+    <script src="../../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../Element-ui/theme-chalk/index.css" />
+    <script src="../../js/axios-0.18.0.js"></script>
+
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div class="bodySelf">
+        <h1>欢迎来到车位共享社会</h1>
+        <el-form :model="changePSD" ref="changePSD" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="旧密码" prop="passwd" :rules="[
+                { required: true, message: '不能为空'},
+               
+              ]">
+                <el-input v-model.number="changePSD.passwd" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="新密码" prop="newPasswd" :rules="[
+            { required: true, message: '新密码不能为空'},
+            
+          ]">
+                <el-input v-model.number="changePSD.newPasswd" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="重复密码" prop="q" :rules="[
+            { required: true, message: '不能为空'},
+           
+          ]">
+                <el-input v-model.number="changePSD.Rpsd" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="submitForm()">提交</el-button>
+                <el-button @click="resetForm('changePSD')">重置</el-button>
+            </el-form-item>
+        </el-form>
+
+
+
+
+    </div>
+    <script>
+        new Vue({
+            el: ".bodySelf",
+
+            methods: {
+                submitForm() {
+                    console.log(this.changePSD)
+                    axios({
+                        method: "post",
+                        url: "http://localhost:8866/code2/OneRoot/updatePasswd",
+                        data: this.changePSD
+                    }).then((result) => {
+                        if (result.data === "success") {
+                            alert("成功")
+                            top.window.location.href = "http://localhost:8866/code2";
+
+                        } else {
+                            alert("失败")
+                        }
+
+                    })
+                },
+                resetForm(formName) {
+                    this.$refs[formName].resetFields();
+                }
+            },
+            data() {
+                return {
+                    changePSD: {}
+                };
+            },
+
+        })
+    </script>
+</body>

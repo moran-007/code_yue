@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>订单表</title>
+    <!-- 引入 Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- 引入 Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>订单表</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>车辆ID</th>
+            <th>位置ID</th>
+            <th>用户ID</th>
+            <th>状态</th>
+            <th>支付时间</th>
+            <th>创建时间</th>
+            <th>更新时间</th>
+            <th>是否删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="order in orders">
+            <td>{{ order.id }}</td>
+            <td>{{ order.cars_id }}</td>
+            <td>{{ order.place_id }}</td>
+            <td>{{ order.user_id }}</td>
+            <td>{{ order.state }}</td>
+            <td>{{ order.pay_time }}</td>
+            <td>{{ order.create_time }}</td>
+            <td>{{ order.update_time }}</td>
+            <td>{{ order.is_deleted }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            orders: [{"carsId": 4000025,
+                "createTime": "2010-03-23 12:54:54",
+                "id": 800000000,
+                "isDeleted": 1,
+                "payTime": "2006-09-06 01:50:09",
+                "state": 2,
+                "updateTime": "2004-06-19 06:58:12",
+                "userId": 0
+            },
+                {
+                    "carsId": 4000030,
+                    "createTime": "2020-09-19 03:29:41",
+                    "id": 800000001,
+                    "isDeleted": 0,
+                    "payTime": "2012-03-29 02:13:58",
+                    "state": 0,
+                    "updateTime": "2013-05-08 16:57:19",
+                    "userId": 0
+                }]
+        },
+        mounted: function() {
+            // 发送 GET 请求获取订单数据
+            axios.get('/api/orders')
+                .then(response => {
+                    this.orders = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    });
+</script>
+</body>
+</html>

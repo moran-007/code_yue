@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../css/register.css" rel="stylesheet">
+    <script src="../../js/vue.js" charset="UTF-8"></script>
+    <script src="../../js/axios.js"></script>
+    <title>测试</title>
+</head>
+
+<body>
+    <p>
+        <a href="../selectAllServlet">查询所有</a>
+        <a href="../User/selectById">查询900024</a>
+        <a href="../User/selectById2">查询900024</a>
+
+    </p>
+    <p>
+        <a href="../selectCarTableAll">查询所有车位信息</a>
+        <a href="../CarTable1/selectByDid">查询3000001</a>
+        <a href="/code2/CarTable1/selectByState">根据状态码查询</a>
+    </p>
+
+    <p>
+        订单表
+        <br/>
+        <a href="../../Order/selectAll">查询全部</a>
+        <a href="../Order/selectByCId">根据车位id查询</a>
+        <a href="../Order/selectByUserId">根据用户id查询</a>
+    </p>
+    <p>
+        用户登录
+        <br />
+        <div class="LoginBox">
+            <form action="../User/UserLogin" id="login" class="login" method="post">
+                <h2>Su_User</h2>
+                <div class="login_box">
+                    <input type="text" id="username" name="username" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" /><label for="username">用户名/邮箱/手机号</label>
+                </div>
+                <div class="login_box">
+                    <input type="password" id="password" name="password" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" /><label for="password">密码</label>
+                </div>
+
+                选择权限：<select name="Searchtype" id="Searchtype" onchange="check();">
+                    <option value="User" selected="selected">用户</option>
+                    <option value="OneRoot">超级管理员</option>
+                    <option value="TwoRoot">管理员</option>
+            </select>
+                <label><input type="radio" name="User" value="user"  >用户</label>
+                <label><input type="radio" name="User" value="OneRoot"  checked="checked"/>超级管理员</label>
+
+                <label><input type="radio" name="User" value="TwoUser">管理员</label>
+                <input type="submit" id="submit_btn" value="登录" />
+
+                <a href="../register.html">注册</a>
+            </form>
+        </div>
+
+        <script>
+            function check() {
+                <!--注意以下使用方法-->
+                const type = document.getElementById("Searchtype").options[document.getElementById("Searchtype").selectedIndex].value;
+                if (type == "User") {
+                    document.getElementById("login").action = "../User/UserLogin"
+                } else if (type == "OneRoot") {
+                    document.getElementById("login").action = "../OneRoot/UserLogin"
+                } else if (type == "TwoRoot") {
+                    document.getElementById("login").action = "../TwoRoot/UserLogin"
+                }
+            }
+        </script>
+        <br />
+        <div class="divright">
+            <form action="../OneRoot/UserLogin" class="login" method="post">
+                <h2>Root_User_1</h2>
+                <div class="login_box">
+
+                    <input type="text" id="username1" name="username1" required onkeyup="this.value=this.value.replace(/[, ]/g,'')" /><label for="username1">用户名/邮箱/手机号</label>
+                </div>
+                <div class="login_box">
+                    <input type="password" id="password1" name="password1" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" /><label for="password1">密码</label>
+                </div>
+
+                <input type="submit" id="submit_btn1" value="登录" />
+
+                <a href="../register.html">注册</a>
+            </form>
+        </div>
+        <br />
+        <div class="divright">
+            <form action="../TwoRoot/UserLogin" class="login" method="post">
+                <h2>Root_User_2</h2>
+                <div class="login_box">
+                    <input type="text" id="username2" name="username1" required onkeyup="this.value=this.value.replace(/[, ]/g,'')" /><label>用户名/邮箱/手机号</label>
+                </div>
+                <div class="login_box">
+                    <input type="password" id="password2" name="password1" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" /><label>密码</label>
+                </div>
+
+                <input type="submit" id="submit_btn2" value="登录" />
+
+                <a href="../register.html">注册</a>
+            </form>
+        </div>
+
+    </p>
+</body>
+
+</html>
