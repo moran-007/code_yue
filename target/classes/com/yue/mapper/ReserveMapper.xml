@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yue.mapper.ReserveMapper">
+
+    <resultMap id="reserveResultMap" type="com.yue.entity.ReserveInfo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="book_id" property="bookId" />
+        <result column="reserve_time" property="reserveTime" />
+        <result column="borrow_time" property="borrowTime" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectReserveById" resultMap="reserveResultMap">
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        FROM reserve_info
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertReserve">
+        INSERT INTO reserve_info (user_id, book_id, reserve_time, borrow_time, status, create_time, update_time)
+        VALUES (#{userId}, #{bookId}, #{reserveTime}, #{borrowTime}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="updateReserve">
+        UPDATE reserve_info
+        SET user_id = #{userId}, book_id = #{bookId}, reserve_time = #{reserveTime}, borrow_time = #{borrowTime},
+        status = #{status}, update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteReserve">
+        DELETE FROM reserve_info
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectAllReserve" resultMap="reserveResultMap">
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        FROM reserve_info
+    </select>
+
+    <select id="selectReserveByUserId" resultMap="reserveResultMap">
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        FROM reserve_info
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectReserveByBookId" resultMap="reserveResultMap">
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        FROM reserve_info
+        WHERE book_id = #{bookId}
+    </select>
+
+    <select id="selectReserveByStatus" resultMap="reserveResultMap">
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        FROM reserve_info
+        WHERE status = #{status}
+    </select>
+
+<!--    <select id="selectReserveByAdminId" resultMap="reserveResultMap">-->
+<!--        SELECT r.id, r.user_id, r.book_id, r.reserve_time, r.borrow_time, r.status, r.create_time, r.update_time-->
+<!--        FROM reserve_info r JOIN admin_info a ON r.user_id = a.id-->
+<!--        WHERE a.id = #{adminId}-->
+<!--    </select>-->
+
+</mapper>

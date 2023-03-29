@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yue.mapper.StatisticsMapper">
+
+    <resultMap id="statisticsResultMap" type="com.yue.entity.StatisticsInfo">
+        <id column="id" property="id"/>
+        <result column="book_title" property="bookTitle"/>
+        <result column="book_type" property="bookType"/>
+        <result column="borrow_count" property="borrowCount"/>
+    </resultMap>
+
+    <!-- 根据ID查询统计信息 -->
+    <select id="selectStatisticsById" resultMap="statisticsResultMap" parameterType="int">
+        SELECT * FROM statistics_info WHERE id = #{id}
+    </select>
+
+    <!-- 查询所有统计信息 -->
+    <select id="selectAllStatistics" resultMap="statisticsResultMap">
+        SELECT * FROM statistics_info
+    </select>
+
+    <!-- 根据书籍类型查询统计信息 -->
+    <select id="selectStatisticsByType" resultMap="statisticsResultMap" parameterType="String">
+        SELECT * FROM statistics_info WHERE book_type = #{type}
+    </select>
+
+    <!-- 插入统计信息 -->
+    <insert id="insertStatistics" parameterType="com.yue.entity.StatisticsInfo">
+        INSERT INTO statistics_info (book_title, book_type, borrow_count) VALUES (#{bookTitle}, #{bookType}, #{borrowCount})
+    </insert>
+
+    <!-- 更新统计信息 -->
+    <update id="updateStatistics" parameterType="com.yue.entity.StatisticsInfo">
+        UPDATE statistics_info SET book_title = #{bookTitle}, book_type = #{bookType}, borrow_count = #{borrowCount} WHERE id = #{id}
+    </update>
+
+    <!-- 根据ID删除统计信息 -->
+    <delete id="deleteStatisticsById" parameterType="int">
+        DELETE FROM statistics_info WHERE id = #{id}
+    </delete>
+
+    <!-- 清空所有统计信息 -->
+    <delete id="deleteAllStatistics">
+        DELETE FROM statistics_info
+    </delete>
+
+</mapper>

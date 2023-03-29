@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <link href="../css/register.css" rel="stylesheet">
+    <script src="../js/vue.js" charset="utf-8"></script>
+    <script src="../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../Element-ui/theme-chalk/index.css" />
+    <script src="../js/vue.js" charset="UTF-8"></script>
+    <script src="../js/axios.js"></script>
+
+</head>
+
+<body>
+    <div class="div-right">
+        <form :model="user" ref="user" :rules="rules" id="register" class="register" method="post">
+            <h2>用户注册</h2>
+            <div class="register_box">
+
+                <input type="text" v-model="user.username" id="username" name="username" onkeyup="this.value=this.value.replace(/[, ]/g,'')" required="required" />
+                <label for="username" prop="username"><span id="name">用户名/邮箱/手机号</span></label>
+            </div>
+            <div class="register_box">
+                <input type="password" required="required" v-model="user.passwd" id="password" name="password" />
+                <label for="password"><span id="psd_one">请输入6-20位密码</span></label>
+
+            </div>
+            <div class="register_box">
+                <input type="password" required="required" id="repeat" onblur="checkPwd2(this.value)" />
+                <label for="repeat"><font id="psd_two">请确认密码</font></label>
+            </div>
+            <div class="register_box" id="phone_box">
+
+                <input type="text" v-model="user.phone" id="phone" name="phone" onkeyup="this.value=this.value.replace(/[, ]/g,'')" required />
+                <label for="phone">手机号</label>
+            </div>
+            <div class="register_box" id="age_box">
+
+                <input type="text" v-model="user.age" id="age" name="age" onkeyup="this.value=this.value.replace(/[, ]/g,'')" required />
+                <label for="age">年龄</label>
+
+            </div>
+
+
+            <div class="register_box" id="dId_box" @click="getSelect()" style="display: none;">
+
+                <!-- <input type="text" v-model="user.dId" id="dId" name="dId" onkeyup="this.value=this.value.replace(/[, ]/g,'')" required />
+                    <label>用户归属</label> -->
+
+                <el-select v-model="user.dId" placeholder="活动区域">
+                    <el-option v-for="item in Did" :value="item.id" :key="item.id" :label="item.username"></el-option>
+                    <!-- <el-option
+                         label="区域二" value="beijing"></el-option> -->
+                </el-select>
+                <!-- <el-button @click="getSelect()">获取</el-button> -->
+
+            </div>
+
+
+            <div class="sex_box" id="sex_box" style="color: #fff;">
+                性别：
+                <input type="radio" name="sex" id="man" v-model="user.sex" value="0" />
+                <label for="man">男</label>
+                <input type="radio" name="sex" id="women" v-model="user.sex" value="1" />
+                <label for="women">女</label>
+            </div>
+            <div class="register_box" id="select_box" style="color: #fff;">
+                权限： <select name="Stitchtype" id="Stitchtype" @click="check();">
+                <option value="User" selected="selected">用户</option>
+                <option value="OneRoot">超级管理员</option>
+                <option value="TwoRoot">管理员</option>
+                </select>
+            </div>
+
+            <div class="register_box sex_box">
+
+                <label for="auth_code">验证码</label>
+                <input name="auth_code" v-model="user.authCode" type="text" required="required" id="auth_code" />
+                <a href="#" @click="imgChange" id="changeImg">
+                    <img id="auth_code_img" alt="验证码图片" class="auth_code_img" src="/code2/checkCodeServlet" /> 看不清，换一张
+                </a>
+            </div>
+
+
+            <div class="endBtn" style="
+               align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    flex-direction: column;">
+                <input type="button" id="submit_btn" value="注册" @click="addUser" />
+                <a style="padding-top: 6px;  text-decoration: none;" href="../index.html ">
+                    已有账号，直接登录
+ </a>
+                <input type="button" id="submit_btn2" value="注册" @click="post()" />
+
+            </div>
+
+        </form>
+
+
+    </div>
+
+    <script src="../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../Element-ui/theme-chalk/index.css" />
+    <script src="../js/register1.js">
+    </script>
+    <script>
+    </script>
+
+</body>
+
+</html>

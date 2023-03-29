@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yue.mapper.AdminMapper">
+    <resultMap id="adminMap" type="AdminInfo">
+        <id property="id" column="id" />
+      <result property="adminContact" column="admin_contact"/>
+        <result property="adminFullname" column="admin_fullname"/>
+        <result property="adminName" column="admin_name"/>
+        <result property="adminPassword" column="admin_password"/>
+    </resultMap>
+
+    <select id="adminLogin" resultMap="adminMap">
+        select * from admin_info where admin_name=#{adminName} and admin_password =#{adminPassword}
+    </select>
+</mapper>

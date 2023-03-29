@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yue.mapper.BorrowMapper">
+
+    <resultMap id="borrowMap" type="BorrowInfo">
+        <id property="id" column="id" />
+        <result property="bookId" column="book_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="borrowTime" column="borrow_time"/>
+        <result property="returnTime" column="return_time"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 添加借阅信息 -->
+    <insert id="addBorrow" parameterType="BorrowInfo">
+        insert into borrow_info(book_id, user_id, borrow_time, return_time, status, create_time, update_time)
+        values (#{bookId}, #{userId}, #{borrowTime}, #{returnTime}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+    <insert id="addBorrowInfo"></insert>
+
+    <!-- 更新借阅信息 -->
+    <update id="updateBorrow" parameterType="BorrowInfo">
+        update borrow_info set book_id=#{bookId}, user_id=#{userId}, borrow_time=#{borrowTime},
+                               return_time=#{returnTime}, status=#{status}, update_time=#{updateTime} where id=#{id}
+    </update>
+    <update id="updateBorrowInfo"></update>
+
+    <!-- 删除借阅信息 -->
+    <delete id="deleteBorrowById" parameterType="long">
+        delete from borrow_info where id=#{id}
+    </delete>
+
+    <!-- 根据 ID 查询借阅信息 -->
+    <select id="findBorrowById" parameterType="long" resultMap="borrowMap">
+        select * from borrow_info where id=#{id}
+    </select>
+
+    <!-- 查询所有借阅信息 -->
+    <select id="findAllBorrows" resultMap="borrowMap">
+        select * from borrow_info
+    </select>
+
+    <!-- 根据书籍 ID 查询借阅信息 -->
+    <select id="findBorrowsByBookId" parameterType="long" resultMap="borrowMap">
+        select * from borrow_info where book_id=#{bookId}
+    </select>
+
+    <!-- 根据用户 ID 查询借阅信息 -->
+    <select id="findBorrowsByUserId" parameterType="long" resultMap="borrowMap">
+        select * from borrow_info where user_id=#{userId}
+    </select>
+
+    <!-- 根据借阅状态查询借阅信息 -->
+    <select id="findBorrowsByStatus" parameterType="long" resultMap="borrowMap">
+        select * from borrow_info where status=#{status}
+    </select>
+
+
+</mapper>

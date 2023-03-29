@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <script src="../js/vue.js" charset="UTF-8"></script>
+    <script src="../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../Element-ui/theme-chalk/index.css" />
+    <script src="../js/axios.js"></script>
+</head>
+
+<body>
+    <!-- <p>
+        <br />
+        <div class="divright">
+            <form action="/code2/User/UserLogin" id="login" class="login" method="post">
+                <h2>用户登录</h2>
+                <div class="login_box">
+                    <input type="text" id="username" name="username" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" /><label for="username">用户名/邮箱/手机号</label>
+                </div>
+                <div class="login_box">
+                    <input type="password" id="password" name="password" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" /><label for="password">密码</label>
+                </div>
+                <div class="login_box">
+                    权限：<select name="Stitchtype" id="Stitchtype" onchange="check();">
+                    <option value="User" selected="selected">用户</option>
+                    <option value="OneRoot">超级管理员</option>
+                    <option value="TwoRoot">管理员</option>
+                    </select>
+                </div>
+
+                <br/>
+                <input type="submit" id="submit_btn" value="登录" />
+
+                <a href="./pages/register.html">注册</a>
+            </form>
+        </div>
+
+       <div><a href="./pages/index.html">全部测试</a></div> -->
+
+    <!-- <script>
+        function check() {
+            // 注意以下使用方法
+            const type = document.getElementById("Stitchtype").options[document.getElementById("Stitchtype").selectedIndex].value;
+            if (type == "User") {
+                document.getElementById("login").action = "/code2/User/UserLogin"
+            } else if (type == "OneRoot") {
+                document.getElementById("login").action = "/code2/OneRoot/UserLogin"
+            } else if (type == "TwoRoot") {
+                document.getElementById("login").action = "/code2/TwoRoot/UserLogin"
+            }
+        }
+    </script> -->
+    <p>
+        <br />
+        <div class="div-right">
+            <form :model="user" id="login" class="login" method="post">
+                <h2>用户登录</h2>
+                <div class="login_box">
+                    <input v-model="user.username" type="text" id="username" name="username" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
+                    <label for="username">用户名/邮箱/手机号</label>
+                </div>
+
+                <div class="login_box">
+                    <input v-model="user.passwd" type="password" id="password" name="password" required="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
+                    <label for="password">密码</label>
+                </div>
+                <div class="login_box">
+                    权限：<select name="Stitchtype" id="Stitchtype">
+                    <option value="User" selected="selected">用户</option>
+                    <option value="OneRoot">超级管理员</option>
+                    <option value="TwoRoot">管理员</option>
+                    </select>
+                </div>
+
+                <br/>
+                <span type="submit" id="submit_btn" value="登录" @click="loginUser">415465</span>
+
+                <a href="register.html">注册</a>
+            </form>
+        </div>
+
+        <div><a href="test/index.html">全部测试</a></div>
+
+        <script src="../js/login1.js">
+        </script>
+</body>
+
+</html>

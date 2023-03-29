@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yue.mapper.BookMapper">
+    <resultMap id="bookMap" type="BookInfo">
+        <id property="id" column="id" />
+        <result property="title" column="title"/>
+        <result property="author" column="author"/>
+        <result property="publisher" column="publisher"/>
+        <result property="isbn" column="isbn"/>
+        <result property="category" column="category"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="particulars" column="particulars"/>
+        <result property="quantity" column="quantity"/>
+    </resultMap>
+    <insert id="addBook">
+        insert into book_info(title,author,publisher,isbn,category,status,publisher,quantity)
+        values (#{title},#{author},#{publisher},#{isbn},#{category},#{status},#{Particulars},#{quantity})
+    </insert>
+    <update id="updateBook">
+        update book_info set
+        <if test="title != null">title=#{title},</if>
+        <if test="author != null">author=#{author},</if>
+        <if test="publisher != null">publisher=#{publisher},</if>
+        <if test="isbn != null">isbn=#{isbn},</if>
+        <if test="category != null">category=#{category},</if>
+        <if test="status != null">status=#{status},</if>
+        <if test="publisher != null">publisher=#{publisher},</if>
+        <if test="quantity != null">quantity=#{quantity},</if>
+=        where id=#{id}
+    </update>
+
+    <delete id="deleteBookById">
+        delete from book_info
+        where id=#{id}
+    </delete>
+
+    <select id="findBookById" resultMap="bookMap">
+        select * from book_info
+        where id=#{id}
+    </select>
+
+    <select id="findAllBooks" resultMap="bookMap">
+        select * from book_info
+    </select>
+
+
+    <select id="findBooksByTitle" resultMap="bookMap">
+        select * from book_info
+        where title like CONCAT('%', #{title}, '%')
+    </select>
+
+
+    <select id="findBooksByAuthor" resultMap="bookMap">
+        select * from book_info
+        where author like CONCAT('%', #{author}, '%')
+    </select>
+
+
+
+    <select id="findBooksByPublisher" resultMap="bookMap">
+        select * from book_info
+        where publisher like CONCAT('%', #{publisher}, '%')
+    </select>
+
+    <select id="findBooks" resultMap="bookMap">
+        select * from book_info
+        <where>
+            <if test="title != null and title != ''">
+                and title like CONCAT('%',#{title},'%')
+            </if>
+            <if test="author != null and author != ''">
+                and author like CONCAT('%',#{author},'%')
+            </if>
+            <if test="publisher != null and publisher != ''">
+                and publisher like CONCAT('%',#{publisher},'%')
+            </if>
+            <if test="category != null and category != ''">
+                and category = #{category}
+            </if>
+        </where>
+    </select>
+
+    <select id="findBooksByPriceRange" resultType="com.yue.entity.BookInfo"></select>
+
+
+</mapper>

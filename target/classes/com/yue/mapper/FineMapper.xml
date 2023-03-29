@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yue.mapper.FineMapper">
+
+    <resultMap id="fineResultMap" type="com.yue.entity.FineInfo">
+        <id property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="bookId" column="book_id" />
+        <result property="fineAmount" column="fine_amount" />
+        <result property="fineTime" column="fine_time" />
+        <result property="status" column="status" />
+    </resultMap>
+
+    <!-- 根据罚款ID查询罚款信息 -->
+    <select id="selectFineById" resultMap="fineResultMap">
+        SELECT * FROM fine_info WHERE id = #{id}
+    </select>
+
+    <!-- 添加罚款信息 -->
+    <insert id="insertFine">
+        INSERT INTO fine_info(user_id, book_id, fine_amount, fine_time, status)
+        VALUES (#{userId}, #{bookId}, #{fineAmount}, #{fineTime}, #{status})
+    </insert>
+
+    <!-- 更新罚款信息 -->
+    <update id="updateFine">
+        UPDATE fine_info SET user_id = #{userId}, book_id = #{bookId},
+        fine_amount = #{fineAmount}, fine_time = #{fineTime}, status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除罚款信息 -->
+    <delete id="deleteFine">
+        DELETE FROM fine_info WHERE id = #{id}
+    </delete>
+
+    <!-- 查询所有罚款信息 -->
+    <select id="selectAllFine" resultMap="fineResultMap">
+        SELECT * FROM fine_info
+    </select>
+
+    <!-- 查询未缴纳的罚款信息 -->
+    <select id="selectUnpaidFine" resultMap="fineResultMap">
+        SELECT * FROM fine_info WHERE status = 1
+    </select>
+
+    <!-- 查询某个用户的所有罚款信息 -->
+    <select id="selectFineByUserId" resultMap="fineResultMap">
+        SELECT * FROM fine_info WHERE user_id = #{userId}
+    </select>
+
+    <!-- 查询某个图书的所有罚款信息 -->
+    <select id="selectFineByBookId" resultMap="fineResultMap">
+        SELECT * FROM fine_info WHERE book_id = #{bookId}
+    </select>
+
+</mapper>

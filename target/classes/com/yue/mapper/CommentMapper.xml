@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yue.mapper.CommentMapper">
+    <resultMap id="commentMap" type="CommentInfo">
+        <id property="id" column="id" />
+        <result property="userId" column="user_id"/>
+        <result property="bookId" column="book_id"/>
+        <result property="content" column="content"/>
+        <result property="rating" column="rating"/>
+        <result property="commentTime" column="comment_time"/>
+    </resultMap>
+    <insert id="addComment">
+        insert into comment_info(user_id, book_id, content, rating, comment_time)
+        values (#{userId}, #{bookId}, #{content}, #{rating}, #{commentTime})
+    </insert>
+    <delete id="deleteCommentById">
+        delete from comment_info where id = #{id}
+    </delete>
+    <delete id="deleteCommentsByBookId">
+        delete from comment_info where book_id = #{bookId}
+    </delete>
+    <update id="updateComment">
+        update comment_info set content=#{content}, rating=#{rating}, comment_time=#{commentTime}
+        where id=#{id}
+    </update>
+    <select id="findCommentById" resultMap="commentMap">
+        select * from comment_info where id = #{id}
+    </select>
+    <select id="findCommentsByBookId" resultMap="commentMap">
+        select * from comment_info where book_id = #{bookId}
+    </select>
+</mapper>
+
+

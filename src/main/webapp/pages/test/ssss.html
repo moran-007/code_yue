@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../js/vue.js" charset="utf-8"></script>
+    <script src="../../Element-ui/index.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../Element-ui/theme-chalk/index.css" />
+    <script src="../../js/axios-0.18.0.js"></script>
+
+    <link rel="stylesheet" href="./css/order.css">
+
+</head>
+
+<body>
+    <script>
+        function updateDuration() {
+            const backendTime = new Date('2023-03-16 20:33:51');
+            const currentTime = new Date();
+            const totalSeconds = Math.floor((currentTime.getTime() - backendTime.getTime()) / 1000);
+            const days = Math.floor(totalSeconds / (3600 * 24));
+            const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            const timeString = `${days}天${hours}小时${minutes}分${seconds}秒`;
+            document.getElementById('duration').textContent = timeString;
+        }
+
+        setInterval(updateDuration, 1000);
+    </script>
+</body>
+
+</html>

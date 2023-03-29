@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yue.mapper.RenewalMapper">
+    <resultMap id="renewalResultMap" type="com.yue.entity.RenewalInfo">
+        <id column="id" property="id" />
+        <result column="reserve_id" property="reserveId" />
+        <result column="user_id" property="userId" />
+        <result column="renewal_time" property="renewalTime" />
+        <result column="admin_id" property="adminId" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+    </resultMap>
+    <select id="selectRenewalById" resultMap="renewalResultMap" parameterType="int">
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        FROM renewal_info
+        WHERE id = #{id}
+    </select>
+    <insert id="insertRenewal" parameterType="com.yue.entity.RenewalInfo">
+        INSERT INTO renewal_info (reserve_id, user_id, renewal_time, admin_id, status, remark)
+        VALUES (#{reserveId}, #{userId}, #{renewalTime}, #{adminId}, #{status}, #{remark})
+    </insert>
+    <update id="updateRenewal" parameterType="com.yue.entity.RenewalInfo">
+        UPDATE renewal_info
+        SET reserve_id = #{reserveId}, user_id = #{userId}, renewal_time = #{renewalTime},
+            admin_id = #{adminId}, status = #{status}, remark = #{remark}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteRenewal" parameterType="int">
+        DELETE FROM renewal_info
+        WHERE id = #{id}
+    </delete>
+    <select id="selectAllRenewal" resultMap="renewalResultMap">
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        FROM renewal_info
+    </select>
+    <select id="selectRenewalByUserId" resultMap="renewalResultMap" parameterType="int">
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        FROM renewal_info
+        WHERE user_id = #{userId}
+    </select>
+    <select id="selectRenewalByStatus" resultMap="renewalResultMap" parameterType="int">
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        FROM renewal_info
+        WHERE status = #{status}
+    </select>
+    <select id="selectRenewalByAdminId" resultMap="renewalResultMap" parameterType="int">
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        FROM renewal_info
+        WHERE admin_id = #{adminId}
+    </select>
+</mapper>
