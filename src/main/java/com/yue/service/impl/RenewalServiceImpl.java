@@ -22,12 +22,13 @@ public class RenewalServiceImpl implements RenewalService {
     }
 
     @Override
-    public void insertRenewal(RenewalInfo renewalInfo) {
+    public int insertRenewal(RenewalInfo renewalInfo) {
         SqlSession sqlSession = factory.openSession();
         RenewalMapper mapper = sqlSession.getMapper(RenewalMapper.class);
-        mapper.insertRenewal(renewalInfo);
+        int i = mapper.insertRenewal(renewalInfo);
         sqlSession.commit();
         sqlSession.close();
+        return i;
     }
 
     @Override

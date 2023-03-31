@@ -40,12 +40,13 @@ public class FineServiceImpl implements FineService {
     }
 
     @Override
-    public void deleteFine(int id) {
+    public int deleteFine(int id) {
         SqlSession sqlSession = factory.openSession();
         FineMapper mapper = sqlSession.getMapper(FineMapper.class);
-        mapper.deleteFine(id);
+        int i = mapper.deleteFine(id);
         sqlSession.commit();
         sqlSession.close();
+        return i;
     }
 
     @Override

@@ -12,9 +12,9 @@ public class UserInfo {
   private String password;
   private String phone;
   private String email;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp createTime;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp updateTime;
 
 

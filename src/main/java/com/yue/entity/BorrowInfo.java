@@ -10,16 +10,16 @@ public class BorrowInfo {
   private long id;
   private long userId;
   private long bookId;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp borrowTime;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp dueTime;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp returnTime;
   private long status;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp createTime;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp updateTime;
 
 

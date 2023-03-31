@@ -9,6 +9,7 @@
         <result property="bookId" column="book_id"/>
         <result property="userId" column="user_id"/>
         <result property="borrowTime" column="borrow_time"/>
+        <result property="dueTime" column="due_time"/>
         <result property="returnTime" column="return_time"/>
         <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>

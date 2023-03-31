@@ -10,7 +10,7 @@ public interface RenewalService {
         RenewalInfo selectRenewalById(int id);
 
         // 插入新的续借信息
-        void insertRenewal(RenewalInfo renewalInfo);
+        int insertRenewal(RenewalInfo renewalInfo);
 
         // 更新续借信息
         void updateRenewal(RenewalInfo renewalInfo);

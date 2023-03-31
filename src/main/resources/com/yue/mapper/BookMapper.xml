@@ -17,7 +17,7 @@
         <result property="quantity" column="quantity"/>
     </resultMap>
     <insert id="addBook">
-        insert into book_info(title,author,publisher,isbn,category,status,publisher,quantity)
+        insert into book_info(title,author,publisher,isbn,category,status,particulars,quantity)
         values (#{title},#{author},#{publisher},#{isbn},#{category},#{status},#{Particulars},#{quantity})
     </insert>
     <update id="updateBook">
@@ -29,8 +29,8 @@
         <if test="category != null">category=#{category},</if>
         <if test="status != null">status=#{status},</if>
         <if test="publisher != null">publisher=#{publisher},</if>
-        <if test="quantity != null">quantity=#{quantity},</if>
-=        where id=#{id}
+        <if test="quantity != null">quantity=#{quantity}</if>
+       where id=#{id}
     </update>
 
     <delete id="deleteBookById">
@@ -79,12 +79,12 @@
                 and publisher like CONCAT('%',#{publisher},'%')
             </if>
             <if test="category != null and category != ''">
-                and category = #{category}
+                and category like CONCAT('%',#{category},'%')
             </if>
         </where>
     </select>
 
-    <select id="findBooksByPriceRange" resultType="com.yue.entity.BookInfo"></select>
+<!--    <select id="findBooksByPriceRange" resultType="com.yue.entity.BookInfo"></select>-->
 
 
 </mapper>

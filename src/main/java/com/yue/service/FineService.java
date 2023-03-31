@@ -15,7 +15,7 @@ public interface FineService {
     void updateFine(FineInfo fineInfo);
 
     // 删除罚款信息
-    void deleteFine(int id);
+    int deleteFine(int id);
 
     // 查询所有罚款信息
     List<FineInfo> selectAllFine();
