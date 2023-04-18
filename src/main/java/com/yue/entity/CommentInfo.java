@@ -12,7 +12,7 @@ public class CommentInfo {
   private long bookId;
   private String content;
   private long rating;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp commentTime;
 
   public CommentInfo() {

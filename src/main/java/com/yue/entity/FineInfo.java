@@ -11,7 +11,7 @@ public class FineInfo {
   private long userId;
   private long bookId;
   private double fineAmount;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp fineTime;
   private long status;
 

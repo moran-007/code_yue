@@ -10,7 +10,7 @@ public class RenewalInfo {
   private long id;
   private long reserveId;
   private long userId;
-  @JSONField(format = "YYYY-MM-DD HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp renewalTime;
   private long adminId;
   private long status;
