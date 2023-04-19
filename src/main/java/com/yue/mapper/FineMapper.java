@@ -1,6 +1,7 @@
 package com.yue.mapper;
 
 import com.yue.entity.FineInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,9 +26,9 @@ public interface FineMapper {
         List<FineInfo> selectUnpaidFine();
 
         // 查询某个用户的所有罚款信息
-        List<FineInfo> selectFineByUserId(int userId);
+        List<FineInfo> selectFineByUserId(@Param("userId") int userId);
 
         // 查询某个图书的所有罚款信息
-        List<FineInfo> selectFineByBookId(int bookId);
+        List<FineInfo> selectFineByBookId(@Param("bookId") int bookId);
 
 }

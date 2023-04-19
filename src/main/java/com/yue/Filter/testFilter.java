@@ -23,7 +23,7 @@ public class testFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         // 允许的域名，如果是 * 表示允许所有域名跨域
         httpResponse.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
-        // 允许的方法
+//        httpResponse.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5174");        // 允许的方法
         httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         // 允许的请求头
         httpResponse.setHeader("Access-Control-Allow-Headers", "Content-Type, x-requested-with, Authorization");

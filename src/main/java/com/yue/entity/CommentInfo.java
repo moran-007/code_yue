@@ -9,22 +9,31 @@ public class CommentInfo {
 
   private long id;
   private long userId;
+  private String userName;
   private long bookId;
+
+  private String bookTitle;
   private String content;
-  private long rating;
+  private double rating;
   @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp commentTime;
+
+
+  private double avgRating;
 
   public CommentInfo() {
   }
 
-  public CommentInfo(long id, long userId, long bookId, String content, long rating, Timestamp commentTime) {
+  public CommentInfo(long id, long userId, String userName, long bookId, String bookTitle, String content, double rating, Timestamp commentTime, double avgRating) {
     this.id = id;
     this.userId = userId;
+    this.userName = userName;
     this.bookId = bookId;
+    this.bookTitle = bookTitle;
     this.content = content;
     this.rating = rating;
     this.commentTime = commentTime;
+    this.avgRating = avgRating;
   }
 
   @Override
@@ -32,10 +41,13 @@ public class CommentInfo {
     return "CommentInfo{" +
             "id=" + id +
             ", userId=" + userId +
+            ", userName='" + userName + '\'' +
             ", bookId=" + bookId +
+            ", bookTitle='" + bookTitle + '\'' +
             ", content='" + content + '\'' +
             ", rating=" + rating +
             ", commentTime=" + commentTime +
+            ", avgRating=" + avgRating +
             '}';
   }
 
@@ -47,6 +59,29 @@ public class CommentInfo {
     this.id = id;
   }
 
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getBookTitle() {
+    return bookTitle;
+  }
+
+  public void setBookTitle(String bookTitle) {
+    this.bookTitle = bookTitle;
+  }
+
+  public double getAvgRating() {
+    return avgRating;
+  }
+
+  public void setAvgRating(double avgRating) {
+    this.avgRating = avgRating;
+  }
 
   public long getUserId() {
     return userId;
@@ -75,11 +110,11 @@ public class CommentInfo {
   }
 
 
-  public long getRating() {
+  public double getRating() {
     return rating;
   }
 
-  public void setRating(long rating) {
+  public void setRating(double rating) {
     this.rating = rating;
   }
 

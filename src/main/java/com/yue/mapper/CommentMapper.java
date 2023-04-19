@@ -23,4 +23,7 @@ public interface CommentMapper {
 
     // 根据图书ID查询评论列表
     List<CommentInfo> findCommentsByBookId(int bookId);
+
+    // 查询所有书籍评分
+    List<CommentInfo> findAllContent();
 }

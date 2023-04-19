@@ -107,4 +107,10 @@ public class CommentServlet extends BaseServlet {
         response.setContentType("text/json;charset=utf-8");
         response.getWriter().write(jsonString);
     }
+    public void findAllContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<CommentInfo> commentInfoList = commentService.findAllContent();
+        String jsonString = JSON.toJSONString(commentInfoList);
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(jsonString);
+    }
 }

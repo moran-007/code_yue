@@ -70,4 +70,13 @@ public class CommentServiceImpl implements CommentService {
         sqlSession.close();
         return list;
     }
+
+    @Override
+    public List<CommentInfo> findAllContent() {
+        SqlSession sqlSession = factory.openSession();
+        CommentMapper mapper = sqlSession.getMapper(CommentMapper.class);
+        List<CommentInfo> list = mapper.findAllContent();
+        sqlSession.close();
+        return list;
+    }
 }

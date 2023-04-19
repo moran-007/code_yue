@@ -15,10 +15,10 @@ public class AdminServiceImpl implements AdminService {
     SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
 
     @Override
-    public List<UserInfo> adminLogin(AdminInfo adminInfo) {
+    public List<AdminInfo> adminLogin(AdminInfo adminInfo) {
         SqlSession sqlSession = factory.openSession();
         AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
-        List<UserInfo> i = mapper.adminLogin(adminInfo);
+        List<AdminInfo> i = mapper.adminLogin(adminInfo);
         sqlSession.close();
         return i;
     }
