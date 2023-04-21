@@ -1,7 +1,6 @@
 package com.yue.service.impl;
 
 import com.yue.entity.AdminInfo;
-import com.yue.entity.UserInfo;
 import com.yue.mapper.AdminMapper;
 import com.yue.service.AdminService;
 import com.yue.util.SqlSessionFactoryUtils;
@@ -21,5 +20,14 @@ public class AdminServiceImpl implements AdminService {
         List<AdminInfo> i = mapper.adminLogin(adminInfo);
         sqlSession.close();
         return i;
+    }
+
+    @Override
+    public void updateId(AdminInfo adminInfo) {
+        SqlSession sqlSession = factory.openSession();
+        AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+        mapper.updateId(adminInfo);
+        sqlSession.commit();
+        sqlSession.close();
     }
 }

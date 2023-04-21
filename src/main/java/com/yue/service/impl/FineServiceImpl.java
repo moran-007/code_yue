@@ -94,4 +94,14 @@ public class FineServiceImpl implements FineService {
         return fineInfos;
     }
 
+    @Override
+    public int updateStatus(String id) {
+        SqlSession sqlSession = factory.openSession();
+        FineMapper mapper = sqlSession.getMapper(FineMapper.class);
+        int i = mapper.updateStatus(id);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
+
 }

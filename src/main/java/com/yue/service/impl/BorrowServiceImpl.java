@@ -98,4 +98,14 @@ public class BorrowServiceImpl implements BorrowService {
         sqlSession.close();
         return borrowInfos;
     }
+
+    @Override
+    public int updateStatus(String id) {
+        SqlSession sqlSession = factory.openSession();
+        BorrowMapper mapper = sqlSession.getMapper(BorrowMapper.class);
+        int i = mapper.updateStatus(id);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
 }

@@ -94,6 +94,31 @@ public class UserServlet extends BaseServlet {
 //
 //    }
 
+    public void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        UserInfo userInfo = JSONObject.parseObject(line,UserInfo.class);
+        int i = userService.updateUser(userInfo);
+        if(i==1) {
+            response.getWriter().write("success");
+        }else {
+            response.getWriter().write("error");
+        }
+    }
+
+    public void updateMyPassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        UserInfo userInfo = JSONObject.parseObject(line,UserInfo.class);
+        int i = userService.updateMyPassword(userInfo);
+        if(i==1) {
+            response.getWriter().write("success");
+        }else {
+            response.getWriter().write("error");
+        }
+    }
+
+
     /**
      * 退出登录
      */

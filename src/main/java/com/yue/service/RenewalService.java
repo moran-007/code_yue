@@ -31,4 +31,12 @@ public interface RenewalService {
         List<RenewalInfo> selectRenewalByAdminId(int adminId);
 
         List<RenewalInfo> selectByCondition(RenewalInfo renewalInfo);
+
+        /*
+         * 续借状态修改
+         * 1. 通过审核pass
+         * 2. 拒绝UPass
+         * */
+        int passStatus(String id);
+        int UPassStatus(String id);
 }

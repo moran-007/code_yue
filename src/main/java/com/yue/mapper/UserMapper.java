@@ -14,7 +14,18 @@ public interface UserMapper {
 
     int register(UserInfo userInfo);
 
+    int updateUser(UserInfo userInfo);
+
+    int updateMyPassword(UserInfo userInfo);
+
+
     List<UserInfo> findAllByAdminId(@Param("adminId") long adminId );
 
     List<UserInfo> findSunUser(UserInfo userInfo);
+
+    /*
+    * 重置密码
+    */
+    void updatePassword(UserInfo userInfo);
+
 }

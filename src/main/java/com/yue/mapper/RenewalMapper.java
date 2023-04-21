@@ -1,6 +1,7 @@
 package com.yue.mapper;
 
 import com.yue.entity.RenewalInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -33,4 +34,11 @@ public interface RenewalMapper {
     // 条件模糊查询
     List<RenewalInfo> selectByCondition(RenewalInfo renewalInfo);
 
+    /*
+    * 续借状态修改
+    * 1. 通过审核pass
+    * 2. 拒绝UPass
+    * */
+    int passStatus(@Param("id")String id);
+    int UPassStatus(@Param("id")String id);
 }

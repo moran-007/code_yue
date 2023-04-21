@@ -136,4 +136,21 @@ public class AdminServlet extends BaseServlet {
         }
 
     }
-}
+    public void updateId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        AdminInfo adminInfo = JSONObject.parseObject(line,AdminInfo.class);
+        adminService.updateId(adminInfo);
+        response.getWriter().write("success");
+
+        }
+    public void updatePassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        UserInfo userInfo = JSONObject.parseObject(line,UserInfo.class);
+        userService.updatePassword(userInfo);
+        response.getWriter().write("success");
+
+    }
+
+    }

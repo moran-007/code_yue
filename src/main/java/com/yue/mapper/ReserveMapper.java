@@ -1,6 +1,7 @@
 package com.yue.mapper;
 
 import com.yue.entity.ReserveInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,7 +15,8 @@ public interface ReserveMapper {
 
     // 更新预约信息
     void updateReserve(ReserveInfo reserveInfo);
-
+    // 更新借阅状态
+    int updateStatus(@Param("id")String id);
     // 删除预约信息
     void deleteReserve(int id);
 

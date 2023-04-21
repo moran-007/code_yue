@@ -34,6 +34,9 @@ public interface BorrowMapper {
     // 模糊查询
     List<BorrowInfo> selectByCondition(BorrowInfo borrowInfo);
 
+    // 归还图书
+    int updateStatus(@Param("id") String id);
+
 //    // 根据用户ID和状态查询借阅信息
 //    List<BorrowInfo> findBorrowInfosByUserIdAndStatus(@Param("userId") long userId, @Param("status") int status);
 //

@@ -10,6 +10,15 @@
         <result property="adminName" column="admin_name"/>
         <result property="adminPassword" column="admin_password"/>
     </resultMap>
+        <update id="updateId">
+            UPDATE admin_info
+            SET
+            <if test="adminName != null">admin_name = #{adminName},</if>
+            <if test="adminPassword != null">admin_password = #{adminPassword},</if>
+            <if test="adminFullname != null">admin_fullname = #{adminFullname},</if>
+            <if test="adminContact != null">admin_contact = #{adminContact}</if>
+            WHERE id = #{id}
+        </update>
 
     <select id="adminLogin" resultMap="adminMap">
         select * from admin_info where admin_name=#{adminName} and admin_password =#{adminPassword}

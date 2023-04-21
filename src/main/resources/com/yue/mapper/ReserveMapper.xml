@@ -34,6 +34,11 @@
         status = #{status}, update_time = #{updateTime}
         WHERE id = #{id}
     </update>
+    <update id="updateStatus">
+        update reserve_info
+        set status = 1
+        where id = #{id}
+    </update>
 
     <delete id="deleteReserve">
         DELETE FROM reserve_info

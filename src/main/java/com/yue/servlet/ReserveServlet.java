@@ -55,6 +55,19 @@ public class ReserveServlet extends BaseServlet {
         response.getWriter().write("success");
     }
 
+    // 更新预约状态
+    public void updateStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        String id= JSONObject.parseObject(line).getString("id");
+        int i = reserveService.updateStatus(id);
+        if (i==1) {
+            response.getWriter().write("success");
+        }else {
+            response.getWriter().write("error");
+        }
+    }
+
 
     // 根据预删除预约
     public void deleteReserve(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -32,4 +32,7 @@ public interface FineService {
     //模糊统计查询
     List<FineInfo> selectByCondition(FineInfo fineInfo);
 
+    int updateStatus(String id);
+
+
 }

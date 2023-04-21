@@ -93,4 +93,24 @@ public class RenewalServiceImpl implements RenewalService {
         sqlSession.close();
         return renewalInfos;
     }
+
+    @Override
+    public int passStatus(String id) {
+        SqlSession sqlSession = factory.openSession();
+        RenewalMapper mapper = sqlSession.getMapper(RenewalMapper.class);
+        int i = mapper.passStatus(id);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
+
+    @Override
+    public int UPassStatus(String id) {
+        SqlSession sqlSession = factory.openSession();
+        RenewalMapper mapper = sqlSession.getMapper(RenewalMapper.class);
+        int i = mapper.UPassStatus(id);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
 }

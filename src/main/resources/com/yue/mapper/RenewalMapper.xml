@@ -29,6 +29,16 @@
             admin_id = #{adminId}, status = #{status}, remark = #{remark}
         WHERE id = #{id}
     </update>
+    <update id="passStatus">
+        update renewal_info
+        set status = 2
+        where id=#{id}
+    </update>
+    <update id="UPassStatus">
+        update renewal_info
+        set status = 3
+        where id=#{id}
+    </update>
     <delete id="deleteRenewal" parameterType="int">
         DELETE FROM renewal_info
         WHERE id = #{id}

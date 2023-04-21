@@ -40,6 +40,16 @@ public class ReserveServiceImpl implements ReserveService {
     }
 
     @Override
+    public int updateStatus(String id) {
+        SqlSession sqlSession = factory.openSession();
+        ReserveMapper mapper = sqlSession.getMapper(ReserveMapper.class);
+        int i = mapper.updateStatus(id);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
+
+    @Override
     public void deleteReserve(int id) {
         SqlSession sqlSession = factory.openSession();
         ReserveMapper mapper = sqlSession.getMapper(ReserveMapper.class);

@@ -34,4 +34,8 @@ public interface FineMapper {
         // 模糊条件查询
         List<FineInfo> selectByCondition(FineInfo fineInfo);
 
+        // 费用缴纳状态修改
+        // 已缴纳
+        int updateStatus(@Param("id")String id);
+
 }

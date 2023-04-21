@@ -134,4 +134,29 @@ public class RenewalServlet extends BaseServlet {
         response.getWriter().write(jsonString);
 
     }
+
+
+    public void passStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        String id= JSONObject.parseObject(line).getString("id");
+        int i = renewalService.passStatus(id);
+        if (i==1) {
+            response.getWriter().write("success");
+        }else {
+            response.getWriter().write("error");
+        }
+    }
+
+    public void UPassStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        String id= JSONObject.parseObject(line).getString("id");
+        int i = renewalService.UPassStatus(id);
+        if (i==1) {
+            response.getWriter().write("success");
+        }else {
+            response.getWriter().write("error");
+        }
+    }
 }

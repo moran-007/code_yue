@@ -13,6 +13,8 @@ public interface ReserveService {
 
     // 更新预约信息
     void updateReserve(ReserveInfo reserveInfo);
+    // 更新借阅状态
+    int updateStatus(String id);
 
     // 删除预约信息
     void deleteReserve(int id);

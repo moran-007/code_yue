@@ -10,4 +10,9 @@ public interface AdminMapper {
      * 管理员登录
      */
     List<AdminInfo> adminLogin(AdminInfo adminInfo);
+
+    /**
+     * 修改密码
+     * */
+    void updateId(AdminInfo adminInfo);
 }

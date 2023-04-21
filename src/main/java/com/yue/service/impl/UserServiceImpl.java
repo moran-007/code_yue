@@ -35,6 +35,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int updateUser(UserInfo userInfo) {
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int i = mapper.updateUser(userInfo);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
+
+    @Override
+    public int updateMyPassword(UserInfo userInfo) {
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int i = mapper.updateMyPassword(userInfo);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
+
+    @Override
     public List<UserInfo> findAllByAdminId(long adminId) {
         SqlSession sqlSession = factory.openSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
@@ -50,5 +70,14 @@ public class UserServiceImpl implements UserService {
         List<UserInfo> sunUser = mapper.findSunUser(userInfo);
         sqlSession.close();
         return sunUser;
+    }
+
+    @Override
+    public void updatePassword(UserInfo userInfo) {
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.updatePassword(userInfo);
+        sqlSession.commit();
+        sqlSession.close();
     }
 }

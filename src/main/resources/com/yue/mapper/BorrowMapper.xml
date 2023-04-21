@@ -30,7 +30,14 @@
         update borrow_info set book_id=#{bookId}, user_id=#{userId}, borrow_time=#{borrowTime},
                                return_time=#{returnTime}, status=#{status}, update_time=#{updateTime} where id=#{id}
     </update>
-    <update id="updateBorrowInfo"></update>
+    <update id="updateBorrowInfo">
+
+    </update>
+    <update id="updateStatus">
+        update borrow_info
+        set status = 1
+        where id = #{id}
+    </update>
 
     <!-- 删除借阅信息 -->
     <delete id="deleteBorrowById" parameterType="long">

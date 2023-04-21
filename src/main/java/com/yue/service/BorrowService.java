@@ -31,4 +31,8 @@ public interface BorrowService {
 
     // 模糊查询
     List<BorrowInfo> selectByCondition(BorrowInfo borrowInfo);
+
+    // 更改归还状态
+    int updateStatus(String id);
+
 }
