@@ -11,6 +11,8 @@
         <result property="fineAmount" column="fine_amount" />
         <result property="fineTime" column="fine_time" />
         <result property="status" column="status" />
+        <result property="userName" column="user_name"/>
+        <result property="bookTitle" column="book_title"/>
     </resultMap>
 
     <!-- 根据罚款ID查询罚款信息 -->
@@ -20,14 +22,16 @@
 
     <!-- 添加罚款信息 -->
     <insert id="insertFine">
-        INSERT INTO fine_info(user_id, book_id, fine_amount, fine_time, status)
-        VALUES (#{userId}, #{bookId}, #{fineAmount}, #{fineTime}, #{status})
+        INSERT INTO fine_info(user_id, book_id, fine_amount, status)
+        VALUES (#{userId}, #{bookId}, #{fineAmount}, #{status})
     </insert>
 
     <!-- 更新罚款信息 -->
     <update id="updateFine">
-        UPDATE fine_info SET user_id = #{userId}, book_id = #{bookId},
-        fine_amount = #{fineAmount}, fine_time = #{fineTime}, status = #{status}
+        UPDATE fine_info SET user_id = #{userId},
+#                              book_id = #{bookId},
+#         fine_amount = #{fineAmount}, fine_time = #{fineTime},
+        status = #{status}
         WHERE id = #{id}
     </update>
 
@@ -54,6 +58,18 @@
     <!-- 查询某个图书的所有罚款信息 -->
     <select id="selectFineByBookId" resultMap="fineResultMap">
         SELECT * FROM fine_info WHERE book_id = #{bookId}
+    </select>
+    <select id="selectByCondition"  resultMap="fineResultMap">
+        select * from fine_info
+        <where>
+            <if test="userName != null and userName != ''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+            <if test="bookTitle!=null and bookTitle != ''">
+                and book_title like concat('%',#{bookTitle},'%')
+            </if>
+        </where>
+
     </select>
 
 </mapper>

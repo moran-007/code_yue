@@ -13,4 +13,8 @@ public interface UserMapper {
     List<UserInfo> login(@Param("phone")String phone, @Param("password") String password);
 
     int register(UserInfo userInfo);
+
+    List<UserInfo> findAllByAdminId(@Param("adminId") long adminId );
+
+    List<UserInfo> findSunUser(UserInfo userInfo);
 }

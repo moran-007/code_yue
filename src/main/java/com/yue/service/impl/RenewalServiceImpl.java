@@ -84,4 +84,13 @@ public class RenewalServiceImpl implements RenewalService {
         sqlSession.close();
         return renewalList;
     }
+
+    @Override
+    public List<RenewalInfo> selectByCondition(RenewalInfo renewalInfo) {
+        SqlSession sqlSession = factory.openSession();
+        RenewalMapper mapper = sqlSession.getMapper(RenewalMapper.class);
+        List<RenewalInfo> renewalInfos = mapper.selectByCondition(renewalInfo);
+        sqlSession.close();
+        return renewalInfos;
+    }
 }

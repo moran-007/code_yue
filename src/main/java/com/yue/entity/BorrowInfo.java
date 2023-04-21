@@ -9,6 +9,8 @@ public class BorrowInfo {
 
   private long id;
   private long userId;
+  private String userName;
+  private String bookTitle;
   private long bookId;
   @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp borrowTime;
@@ -26,9 +28,11 @@ public class BorrowInfo {
   public BorrowInfo() {
   }
 
-  public BorrowInfo(long id, long userId, long bookId, Timestamp borrowTime, Timestamp dueTime, Timestamp returnTime, long status, Timestamp createTime, Timestamp updateTime) {
+  public BorrowInfo(long id, long userId, String userName, String bookTitle, long bookId, Timestamp borrowTime, Timestamp dueTime, Timestamp returnTime, long status, Timestamp createTime, Timestamp updateTime) {
     this.id = id;
     this.userId = userId;
+    this.userName = userName;
+    this.bookTitle = bookTitle;
     this.bookId = bookId;
     this.borrowTime = borrowTime;
     this.dueTime = dueTime;
@@ -43,6 +47,8 @@ public class BorrowInfo {
     return "BorrowInfo{" +
             "id=" + id +
             ", userId=" + userId +
+            ", userName='" + userName + '\'' +
+            ", bookTitle='" + bookTitle + '\'' +
             ", bookId=" + bookId +
             ", borrowTime=" + borrowTime +
             ", dueTime=" + dueTime +
@@ -79,6 +85,21 @@ public class BorrowInfo {
     this.bookId = bookId;
   }
 
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getBookTitle() {
+    return bookTitle;
+  }
+
+  public void setBookTitle(String bookTitle) {
+    this.bookTitle = bookTitle;
+  }
 
   public Timestamp getBorrowTime() {
     return borrowTime;

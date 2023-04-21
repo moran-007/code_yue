@@ -85,4 +85,13 @@ public class FineServiceImpl implements FineService {
         return fines;
     }
 
+    @Override
+    public List<FineInfo> selectByCondition(FineInfo fineInfo) {
+        SqlSession sqlSession = factory.openSession();
+        FineMapper mapper = sqlSession.getMapper(FineMapper.class);
+        List<FineInfo> fineInfos = mapper.selectByCondition(fineInfo);
+        sqlSession.close();
+        return fineInfos;
+    }
+
 }

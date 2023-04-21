@@ -84,4 +84,13 @@ public class ReserveServiceImpl implements ReserveService {
         return reserveInfos;
     }
 
+    @Override
+    public List<ReserveInfo> selectByCondition(ReserveInfo reserveInfo) {
+        SqlSession sqlSession = factory.openSession();
+        ReserveMapper mapper = sqlSession.getMapper(ReserveMapper.class);
+        List<ReserveInfo> reserveInfos = mapper.selectByCondition(reserveInfo);
+        sqlSession.close();
+        return reserveInfos;
+    }
+
 }

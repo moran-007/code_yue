@@ -76,6 +76,7 @@ public class UserServlet extends BaseServlet {
         userInfo.setPhone(JSONObject.parseObject(line).getString("phone"));
         userInfo.setEmail(JSONObject.parseObject(line).getString("email"));
         userInfo.setPassword(JSONObject.parseObject(line).getString("password"));
+        userInfo.setAdminId(JSONObject.parseObject(line).getString("adminId"));
 
         int register = userService.register(userInfo);
         if(register>0){

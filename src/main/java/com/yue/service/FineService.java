@@ -28,4 +28,8 @@ public interface FineService {
 
     // 查询某个图书的所有罚款信息
     List<FineInfo> selectFineByBookId(int bookId);
+
+    //模糊统计查询
+    List<FineInfo> selectByCondition(FineInfo fineInfo);
+
 }

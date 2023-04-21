@@ -8,6 +8,8 @@
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
         <result column="book_id" property="bookId" />
+        <result property="userName" column="user_name"/>
+        <result property="bookTitle" column="book_title"/>
         <result column="reserve_time" property="reserveTime" />
         <result column="borrow_time" property="borrowTime" />
         <result column="status" property="status" />
@@ -16,7 +18,7 @@
     </resultMap>
 
     <select id="selectReserveById" resultMap="reserveResultMap">
-        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time,user_name,book_title
         FROM reserve_info
         WHERE id = #{id}
     </select>
@@ -39,29 +41,40 @@
     </delete>
 
     <select id="selectAllReserve" resultMap="reserveResultMap">
-        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time,user_name,book_title
         FROM reserve_info
     </select>
 
     <select id="selectReserveByUserId" resultMap="reserveResultMap">
-        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time,user_name,book_title
         FROM reserve_info
         WHERE user_id = #{userId}
     </select>
 
     <select id="selectReserveByBookId" resultMap="reserveResultMap">
-        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time,user_name,book_title
         FROM reserve_info
         WHERE book_id = #{bookId}
     </select>
 
     <select id="selectReserveByStatus" resultMap="reserveResultMap">
-        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time
+        SELECT id, user_id, book_id, reserve_time, borrow_time, status, create_time, update_time,user_name,book_title
         FROM reserve_info
         WHERE status = #{status}
     </select>
+    <select id="selectByCondition" resultMap="reserveResultMap">
+        select * from reserve_info
+        <where>
+        <if test="userName != null and userName != ''">
+            and user_name like concat('%',#{userName},'%')
+        </if>
+        <if test="bookTitle!=null and bookTitle != ''">
+            and book_title like concat('%',#{bookTitle},'%')
+        </if>
+        </where>
+    </select>
 
-<!--    <select id="selectReserveByAdminId" resultMap="reserveResultMap">-->
+    <!--    <select id="selectReserveByAdminId" resultMap="reserveResultMap">-->
 <!--        SELECT r.id, r.user_id, r.book_id, r.reserve_time, r.borrow_time, r.status, r.create_time, r.update_time-->
 <!--        FROM reserve_info r JOIN admin_info a ON r.user_id = a.id-->
 <!--        WHERE a.id = #{adminId}-->

@@ -9,6 +9,8 @@ public class RenewalInfo {
 
   private long id;
   private long reserveId;
+  private String userName;
+  private String bookTitle;
   private long userId;
   @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp renewalTime;
@@ -19,27 +21,31 @@ public class RenewalInfo {
   public RenewalInfo() {
   }
 
-  public RenewalInfo(long id, long reserveId, long userId, Timestamp renewalTime, long adminId, long status, String remark) {
-    this.id = id;
-    this.reserveId = reserveId;
-    this.userId = userId;
-    this.renewalTime = renewalTime;
-    this.adminId = adminId;
-    this.status = status;
-    this.remark = remark;
-  }
-
   @Override
   public String toString() {
     return "RenewalInfo{" +
             "id=" + id +
             ", reserveId=" + reserveId +
+            ", userName='" + userName + '\'' +
+            ", bookTitle='" + bookTitle + '\'' +
             ", userId=" + userId +
             ", renewalTime=" + renewalTime +
             ", adminId=" + adminId +
             ", status=" + status +
             ", remark='" + remark + '\'' +
             '}';
+  }
+
+  public RenewalInfo(long id, long reserveId, String userName, String bookTitle, long userId, Timestamp renewalTime, long adminId, long status, String remark) {
+    this.id = id;
+    this.reserveId = reserveId;
+    this.userName = userName;
+    this.bookTitle = bookTitle;
+    this.userId = userId;
+    this.renewalTime = renewalTime;
+    this.adminId = adminId;
+    this.status = status;
+    this.remark = remark;
   }
 
   public long getId() {
@@ -68,6 +74,21 @@ public class RenewalInfo {
     this.userId = userId;
   }
 
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getBookTitle() {
+    return bookTitle;
+  }
+
+  public void setBookTitle(String bookTitle) {
+    this.bookTitle = bookTitle;
+  }
 
   public Timestamp getRenewalTime() {
     return renewalTime;

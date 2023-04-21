@@ -31,4 +31,7 @@ public interface FineMapper {
         // 查询某个图书的所有罚款信息
         List<FineInfo> selectFineByBookId(@Param("bookId") int bookId);
 
+        // 模糊条件查询
+        List<FineInfo> selectByCondition(FineInfo fineInfo);
+
 }

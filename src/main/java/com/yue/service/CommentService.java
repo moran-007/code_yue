@@ -25,4 +25,7 @@ public interface  CommentService {
 
     // 查询所有书籍评分
     List<CommentInfo> findAllContent();
+
+    List<CommentInfo> selectByCondition(CommentInfo commentInfo);
+
 }

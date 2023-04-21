@@ -30,4 +30,7 @@ public interface RenewalMapper {
     // 根据管理员ID查询续借信息
     List<RenewalInfo> selectRenewalByAdminId(int adminId);
 
+    // 条件模糊查询
+    List<RenewalInfo> selectByCondition(RenewalInfo renewalInfo);
+
 }

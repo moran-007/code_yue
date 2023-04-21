@@ -11,9 +11,11 @@
         <result column="admin_id" property="adminId" />
         <result column="status" property="status" />
         <result column="remark" property="remark" />
+        <result property="userName" column="user_name"/>
+        <result property="bookTitle" column="book_title"/>
     </resultMap>
     <select id="selectRenewalById" resultMap="renewalResultMap" parameterType="int">
-        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark,user_name,book_title
         FROM renewal_info
         WHERE id = #{id}
     </select>
@@ -32,22 +34,33 @@
         WHERE id = #{id}
     </delete>
     <select id="selectAllRenewal" resultMap="renewalResultMap">
-        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark,user_name,book_title
         FROM renewal_info
     </select>
     <select id="selectRenewalByUserId" resultMap="renewalResultMap" parameterType="int">
-        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark,user_name,book_title
         FROM renewal_info
         WHERE user_id = #{userId}
     </select>
     <select id="selectRenewalByStatus" resultMap="renewalResultMap" parameterType="int">
-        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark,user_name,book_title
         FROM renewal_info
         WHERE status = #{status}
     </select>
     <select id="selectRenewalByAdminId" resultMap="renewalResultMap" parameterType="int">
-        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark
+        SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark,user_name,book_title
         FROM renewal_info
         WHERE admin_id = #{adminId}
+    </select>
+    <select id="selectByCondition" resultMap="renewalResultMap">
+        select * from renewal_info
+        <where>
+            <if test="userName != null and userName != ''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+            <if test="bookTitle!=null and bookTitle != ''">
+                and book_title like concat('%',#{bookTitle},'%')
+            </if>
+        </where>
     </select>
 </mapper>

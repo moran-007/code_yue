@@ -30,6 +30,7 @@ public interface ReserveMapper {
     // 根据预约状态查询预约信息
     List<ReserveInfo> selectReserveByStatus(int status);
 
+    List<ReserveInfo> selectByCondition(ReserveInfo reserveInfo);
 //    // 根据管理员ID查询预约信息
 //    List<ReserveInfo> selectReserveByAdminId(int adminId);
 

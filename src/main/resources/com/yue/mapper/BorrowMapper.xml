@@ -14,6 +14,8 @@
         <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
+        <result property="userName" column="user_name"/>
+        <result property="bookTitle" column="book_title"/>
     </resultMap>
 
     <!-- 添加借阅信息 -->
@@ -58,6 +60,17 @@
     <!-- 根据借阅状态查询借阅信息 -->
     <select id="findBorrowsByStatus" parameterType="long" resultMap="borrowMap">
         select * from borrow_info where status=#{status}
+    </select>
+    <select id="selectByCondition" resultMap="borrowMap">
+        select * from borrow_info
+        <where>
+            <if test="userName != null and userName != ''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+            <if test="bookTitle!=null and bookTitle != ''">
+                and book_title like concat('%',#{bookTitle},'%')
+            </if>
+        </where>
     </select>
 
 

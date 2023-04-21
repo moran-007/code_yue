@@ -113,4 +113,18 @@ public class CommentServlet extends BaseServlet {
         response.setContentType("text/json;charset=utf-8");
         response.getWriter().write(jsonString);
     }
+
+    // 条件模糊查询
+    public void selectByCondition(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 从request中获取要查询的预约状态
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        CommentInfo commentInfo = JSONObject.parseObject(line,CommentInfo.class);
+        // 调用reserveService的findReservesByStatus方法进行查询
+        List<CommentInfo> list = commentService.selectByCondition(commentInfo);
+        String jsonString = JSON.toJSONString(list);
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(jsonString);
+
+    }
 }

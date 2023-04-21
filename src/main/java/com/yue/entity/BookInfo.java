@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public class BookInfo {
 
-  private long id;
+  private int id;
   private String title;
   private String author;
   private String publisher;
@@ -15,12 +15,12 @@ public class BookInfo {
   private java.sql.Timestamp createTime;
   private java.sql.Timestamp updateTime;
   private String Particulars;
-  private long quantity;
+  private String quantity;
 
   public BookInfo() {
   }
 
-  public BookInfo(long id, String title, String author, String publisher, String isbn, String category, long status, Timestamp createTime, Timestamp updateTime, String particulars, long quantity) {
+  public BookInfo(int id, String title, String author, String publisher, String isbn, String category, long status, Timestamp createTime, Timestamp updateTime, String particulars, String quantity) {
     this.id = id;
     this.title = title;
     this.author = author;
@@ -51,11 +51,11 @@ public class BookInfo {
             '}';
   }
 
-  public long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -141,11 +141,11 @@ public class BookInfo {
   }
 
 
-  public long getQuantity() {
+  public String getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(long quantity) {
+  public void setQuantity(String quantity) {
     this.quantity = quantity;
   }
 

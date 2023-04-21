@@ -29,4 +29,7 @@ public interface ReserveService {
     // 根据预约状态查询预约信息
     List<ReserveInfo> selectReserveByStatus(int status);
 
+    // 条件查询
+    List<ReserveInfo> selectByCondition(ReserveInfo reserveInfo);
+
 }

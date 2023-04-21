@@ -9,15 +9,33 @@
         <result property="username" column="username"/>
         <result property="updateTime" column="update_time"/>
         <result property="createTime" column="create_time"/>
-<!--        <result property="createTime" column="createTime" typeHandler="org.apache.ibatis.type.SqlTimestampTypeHandler" />-->
-<!--        <result property="updateTime" column="updateTime" typeHandler="org.apache.ibatis.type.SqlTimestampTypeHandler" />-->
         <result property="password" column="password"/>
         <result property="email" column="email"/>
+        <result property="adminId" column="admin_id"/>
     </resultMap>
     <insert id="register">
-        INSERT INTO `moran007`.`user_info` (`username`, `password`, `phone`, `email`) VALUES (#{username}, #{password}, #{phone}, #{email})
+        INSERT INTO `moran007`.`user_info` (`username`, `password`, `phone`, `email`,`admin_id`)
+        VALUES (#{username},
+                #{password},
+                #{phone},
+                IFNULL(#{email}, null),
+                IFNULL(#{adminId},null)
+                )
     </insert>
     <select id="login" resultMap="userMap">
         select * from user_info where password=#{password} and phone=#{phone}
+    </select>
+    <select id="findAllByAdminId" resultMap="userMap">
+        select * from user_info where admin_id = #{adminId}
+    </select>
+    <select id="findSunUser" resultMap="userMap">
+        select * from user_info
+        where admin_id = #{adminId}
+        <if test="username != null and username != ''">
+            and username like concat('%',#{username},'%')
+        </if>
+        <if test="phone!=null and phone != ''">
+            and phone like concat('%',#{phone},'%')
+        </if>
     </select>
 </mapper>

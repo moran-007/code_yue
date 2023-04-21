@@ -31,6 +31,9 @@ public interface BorrowMapper {
     // 根据状态查询借阅信息
     List<BorrowInfo> findBorrowsByStatus(@Param("status") int status);
 
+    // 模糊查询
+    List<BorrowInfo> selectByCondition(BorrowInfo borrowInfo);
+
 //    // 根据用户ID和状态查询借阅信息
 //    List<BorrowInfo> findBorrowInfosByUserIdAndStatus(@Param("userId") long userId, @Param("status") int status);
 //

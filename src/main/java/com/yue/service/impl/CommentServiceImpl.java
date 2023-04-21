@@ -79,4 +79,13 @@ public class CommentServiceImpl implements CommentService {
         sqlSession.close();
         return list;
     }
+
+    @Override
+    public List<CommentInfo> selectByCondition(CommentInfo commentInfo) {
+        SqlSession sqlSession = factory.openSession();
+        CommentMapper mapper = sqlSession.getMapper(CommentMapper.class);
+        List<CommentInfo> commentInfos = mapper.selectByCondition(commentInfo);
+        sqlSession.close();
+        return commentInfos;
+    }
 }

@@ -89,4 +89,13 @@ public class BorrowServiceImpl implements BorrowService {
         sqlSession.close();
         return list;
     }
+
+    @Override
+    public List<BorrowInfo> selectByCondition(BorrowInfo borrowInfo) {
+        SqlSession sqlSession = factory.openSession();
+        BorrowMapper mapper = sqlSession.getMapper(BorrowMapper.class);
+        List<BorrowInfo> borrowInfos = mapper.selectByCondition(borrowInfo);
+        sqlSession.close();
+        return borrowInfos;
+    }
 }

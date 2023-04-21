@@ -26,4 +26,7 @@ public interface CommentMapper {
 
     // 查询所有书籍评分
     List<CommentInfo> findAllContent();
+
+    // 模糊查询某本书籍的评分
+    List<CommentInfo> selectByCondition(CommentInfo commentInfo);
 }

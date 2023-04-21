@@ -10,6 +10,8 @@ public class FineInfo {
   private long id;
   private long userId;
   private long bookId;
+  private String userName;
+  private String bookTitle;
   private double fineAmount;
   @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp fineTime;
@@ -19,10 +21,12 @@ public class FineInfo {
   public FineInfo() {
   }
 
-  public FineInfo(long id, long userId, long bookId, double fineAmount, Timestamp fineTime, long status) {
+  public FineInfo(long id, long userId, long bookId, String userName, String bookTitle, double fineAmount, Timestamp fineTime, long status) {
     this.id = id;
     this.userId = userId;
     this.bookId = bookId;
+    this.userName = userName;
+    this.bookTitle = bookTitle;
     this.fineAmount = fineAmount;
     this.fineTime = fineTime;
     this.status = status;
@@ -34,6 +38,8 @@ public class FineInfo {
             "id=" + id +
             ", userId=" + userId +
             ", bookId=" + bookId +
+            ", userName='" + userName + '\'' +
+            ", bookTitle='" + bookTitle + '\'' +
             ", fineAmount=" + fineAmount +
             ", fineTime=" + fineTime +
             ", status=" + status +
@@ -66,6 +72,21 @@ public class FineInfo {
     this.bookId = bookId;
   }
 
+  public String getBookTitle() {
+    return bookTitle;
+  }
+
+  public void setBookTitle(String bookTitle) {
+    this.bookTitle = bookTitle;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
 
   public double getFineAmount() {
     return fineAmount;

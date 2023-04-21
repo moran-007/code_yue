@@ -33,4 +33,22 @@ public class UserServiceImpl implements UserService {
         sqlSession.close();
         return register;
     }
+
+    @Override
+    public List<UserInfo> findAllByAdminId(long adminId) {
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<UserInfo> allByAdminId = mapper.findAllByAdminId(adminId);
+        sqlSession.close();
+        return allByAdminId;
+    }
+
+    @Override
+    public List<UserInfo> findSunUser(UserInfo userInfo) {
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<UserInfo> sunUser = mapper.findSunUser(userInfo);
+        sqlSession.close();
+        return sunUser;
+    }
 }

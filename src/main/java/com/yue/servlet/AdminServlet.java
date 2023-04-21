@@ -1,10 +1,13 @@
 package com.yue.servlet;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yue.entity.AdminInfo;
 import com.yue.entity.UserInfo;
 import com.yue.service.AdminService;
+import com.yue.service.UserService;
 import com.yue.service.impl.AdminServiceImpl;
+import com.yue.service.impl.UserServiceImpl;
 import com.yue.util.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -21,6 +24,7 @@ import java.util.List;
 
 public class AdminServlet extends BaseServlet {
     AdminService adminService = new AdminServiceImpl();
+    UserService userService = new UserServiceImpl();
     /*
      * 用户登录
      */
@@ -97,4 +101,39 @@ public class AdminServlet extends BaseServlet {
     }
 
 
+
+    public void findAllByAdminId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 从request中获取要删除的书籍的ID
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        int adminId = Integer.parseInt(JSONObject.parseObject(line).getString("adminId"));
+        // 调用bookService的deleteBookById方法进行删除
+        List<UserInfo> allByAdminId = userService.findAllByAdminId(adminId);
+        if (allByAdminId != null) {
+            String jsonString = JSON.toJSONString(allByAdminId);
+            response.setContentType("text/json;charset=utf-8");
+            response.getWriter().write(jsonString);
+        }else {
+            response.getWriter().write("error");
+        }
+
+    }
+
+    /*
+    * 条件查询
+    */
+    public void    findSunUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        UserInfo userInfo = JSONObject.parseObject(line,UserInfo.class);
+        List<UserInfo> sunUser = userService.findSunUser(userInfo);
+        if (sunUser != null) {
+            String jsonString = JSON.toJSONString(sunUser);
+            response.setContentType("text/json;charset=utf-8");
+            response.getWriter().write(jsonString);
+        }else {
+            response.getWriter().write("error");
+        }
+
+    }
 }

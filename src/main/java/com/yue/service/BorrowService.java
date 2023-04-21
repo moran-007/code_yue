@@ -29,4 +29,6 @@ public interface BorrowService {
     // 根据状态查询借阅信息
     List<BorrowInfo> findBorrowsByStatus(int status);
 
+    // 模糊查询
+    List<BorrowInfo> selectByCondition(BorrowInfo borrowInfo);
 }

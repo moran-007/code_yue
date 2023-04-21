@@ -17,12 +17,14 @@ public class UserInfo {
   @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp updateTime;
 
+  private String adminId;
+
 
 
   public UserInfo() {
   }
 
-  public UserInfo(long id, String username, String password, String phone, String email, Timestamp createTime, Timestamp updateTime) {
+  public UserInfo(long id, String username, String password, String phone, String email, Timestamp createTime, Timestamp updateTime, String adminId) {
     this.id = id;
     this.username = username;
     this.password = password;
@@ -30,6 +32,7 @@ public class UserInfo {
     this.email = email;
     this.createTime = createTime;
     this.updateTime = updateTime;
+    this.adminId = adminId;
   }
 
   @Override
@@ -42,6 +45,7 @@ public class UserInfo {
             ", email='" + email + '\'' +
             ", createTime=" + createTime +
             ", updateTime=" + updateTime +
+            ", adminId=" + adminId +
             '}';
   }
 
@@ -107,4 +111,12 @@ public class UserInfo {
     this.updateTime = updateTime;
   }
 
+
+  public String getAdminId() {
+    return adminId;
+  }
+
+  public void setAdminId(String adminId) {
+    this.adminId = adminId;
+  }
 }

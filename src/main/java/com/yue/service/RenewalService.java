@@ -30,4 +30,5 @@ public interface RenewalService {
         // 根据管理员ID查询续借信息
         List<RenewalInfo> selectRenewalByAdminId(int adminId);
 
+        List<RenewalInfo> selectByCondition(RenewalInfo renewalInfo);
 }

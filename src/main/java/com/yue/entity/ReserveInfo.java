@@ -9,6 +9,8 @@ public class ReserveInfo {
 
   private long id;
   private long userId;
+  private String userName;
+  private String bookTitle;
   private long bookId;
   @JSONField(format = "yyyy-MM-dd HH:mm:ss")
   private Timestamp reserveTime;
@@ -23,10 +25,11 @@ public class ReserveInfo {
   public ReserveInfo() {
   }
 
-  public ReserveInfo(long id, long userId, long bookId, Timestamp reserveTime, Timestamp borrowTime, long status, Timestamp createTime, Timestamp updateTime) {
-
+  public ReserveInfo(long id, long userId, String userName, String bookTitle, long bookId, Timestamp reserveTime, Timestamp borrowTime, long status, Timestamp createTime, Timestamp updateTime) {
     this.id = id;
     this.userId = userId;
+    this.userName = userName;
+    this.bookTitle = bookTitle;
     this.bookId = bookId;
     this.reserveTime = reserveTime;
     this.borrowTime = borrowTime;
@@ -40,6 +43,8 @@ public class ReserveInfo {
     return "ReserveInfo{" +
             "id=" + id +
             ", userId=" + userId +
+            ", userName='" + userName + '\'' +
+            ", bookTitle='" + bookTitle + '\'' +
             ", bookId=" + bookId +
             ", reserveTime=" + reserveTime +
             ", borrowTime=" + borrowTime +
@@ -75,6 +80,21 @@ public class ReserveInfo {
     this.bookId = bookId;
   }
 
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getBookTitle() {
+    return bookTitle;
+  }
+
+  public void setBookTitle(String bookTitle) {
+    this.bookTitle = bookTitle;
+  }
 
   public Timestamp getReserveTime() {
     return reserveTime;

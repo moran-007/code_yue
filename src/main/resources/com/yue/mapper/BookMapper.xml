@@ -27,10 +27,11 @@
         <if test="publisher != null">publisher=#{publisher},</if>
         <if test="isbn != null">isbn=#{isbn},</if>
         <if test="category != null">category=#{category},</if>
-        <if test="status != null">status=#{status},</if>
         <if test="publisher != null">publisher=#{publisher},</if>
-        <if test="quantity != null">quantity=#{quantity}</if>
-       where id=#{id}
+        <if test="quantity != null">quantity=#{quantity},</if>
+        <if test="status != null">status=#{status}</if>
+
+        where id=#{id}
     </update>
 
     <delete id="deleteBookById">

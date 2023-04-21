@@ -1,6 +1,7 @@
 package com.yue.mapper;
 
 import com.yue.entity.BookInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface BookMapper {
     int addBook(BookInfo bookInfo);
 
     // 根据ID删除一本书
-    int deleteBookById(int id);
+    int deleteBookById(@Param("id") int id);
 
     // 更新一本书的信息
     int updateBook(BookInfo bookInfo);

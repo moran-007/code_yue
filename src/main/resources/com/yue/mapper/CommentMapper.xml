@@ -39,6 +39,18 @@
         SELECT *, AVG(rating) AS avg_rating
         FROM comment_info
         GROUP BY book_title
+        ORDER BY avg_rating DESC;
+    </select>
+    <select id="selectByCondition" resultType="com.yue.entity.CommentInfo">
+        SELECT *, AVG(rating) AS avg_rating
+        FROM comment_info
+        <where>
+            <if test="bookTitle!=null and bookTitle != ''">
+                book_title LIKE CONCAT('%', #{bookTitle}, '%')
+            </if>
+        </where>
+--         GROUP BY book_title
+        ORDER BY avg_rating DESC;
     </select>
 </mapper>
 

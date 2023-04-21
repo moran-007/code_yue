@@ -115,4 +115,16 @@ public class ReserveServlet extends BaseServlet {
         response.setContentType("text/json;charset=utf-8");
         response.getWriter().write(jsonString);
     }
+    public void selectByCondition(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 从request中获取要查询的预约状态
+        BufferedReader reader = request.getReader();
+        String line = reader.readLine();
+        ReserveInfo reserveInfo = JSONObject.parseObject(line,ReserveInfo.class);
+        // 调用reserveService的findReservesByStatus方法进行查询
+        List<ReserveInfo> reserveInfos = reserveService.selectByCondition(reserveInfo);
+        String jsonString = JSON.toJSONString(reserveInfos);
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(jsonString);
+
+    }
 }
