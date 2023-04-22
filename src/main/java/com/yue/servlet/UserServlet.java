@@ -133,9 +133,9 @@ public class UserServlet extends BaseServlet {
      */
     private String generateToken(UserInfo user) {
         long timestamp = System.currentTimeMillis();
-        String username = user.getUsername();
+        String id = String.valueOf(user.getId());
         String password = user.getPassword();
-        String token = timestamp + ":" + password;
+        String token = timestamp + ":" +id+":"+ password;
         // TODO: 对token进行加密
         return token;
     }

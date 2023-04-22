@@ -46,12 +46,12 @@ public class AdminServlet extends BaseServlet {
 // 3. 生成token并存入session
             HttpSession session = request.getSession();
             String token = generateToken(admin.get(0));
-            session.setAttribute("token", token);
+            session.setAttribute("adminToken", token);
             // 2. 转json
 //            String jsonString = JSON.toJSONString(token);
 //            response.setContentType("text/json;charset=utf-8");
 
-            Cookie cookie = new Cookie("token",token);
+            Cookie cookie = new Cookie("adminToken",token);
 //            2.设置Cookie再和护短的持久化时间，如果不设置持久化时间，cookie会存储在浏览器的内存中，浏览器关闭cookie存储的信息销毁，也就是会话级别的cookie
             cookie.setMaxAge(60*60);//十分钟	---时间设置成0代表删除该cookie
             //3.为Cookie设置携带的路径，如果不设置携带路径，那么该cookie会在与他同级的资源路径中携带信息
@@ -75,9 +75,9 @@ public class AdminServlet extends BaseServlet {
      */
     private String generateToken(AdminInfo admin) {
         long timestamp = System.currentTimeMillis();
-        String username = admin.getAdminName();
-        String password = admin.getAdminPassword();
-        String token = timestamp + ":" + password;
+        String id = String.valueOf(admin.getId());
+//        String password = admin.getAdminPassword();
+        String token = timestamp + ":"+ id+":"+"41122" ;
         // TODO: 对token进行加密
         return token;
     }
@@ -87,7 +87,7 @@ public class AdminServlet extends BaseServlet {
      */
     private boolean checkToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        String token = (String) session.getAttribute("token");
+        String token = (String) session.getAttribute("adminToken");
 
         if (token == null) {
             // 未登录，重定向到登录页面
