@@ -24,8 +24,8 @@
     </select>
 
     <insert id="insertReserve">
-        INSERT INTO reserve_info (user_id, book_id, reserve_time, borrow_time, status, create_time, update_time)
-        VALUES (#{userId}, #{bookId}, #{reserveTime}, #{borrowTime}, #{status}, #{createTime}, #{updateTime})
+        INSERT INTO reserve_info (user_id, book_id)
+        VALUES (#{userId}, #{bookId})
     </insert>
 
     <update id="updateReserve">
