@@ -20,8 +20,8 @@
         WHERE id = #{id}
     </select>
     <insert id="insertRenewal" parameterType="com.yue.entity.RenewalInfo">
-        INSERT INTO renewal_info (reserve_id, user_id, renewal_time, admin_id, status, remark)
-        VALUES (#{reserveId}, #{userId}, #{renewalTime}, #{adminId}, #{status}, #{remark})
+        INSERT INTO renewal_info (reserve_id, user_id,admin_id,remark)
+        VALUES (#{reserveId}, #{userId},  #{adminId},#{remark})
     </insert>
     <update id="updateRenewal" parameterType="com.yue.entity.RenewalInfo">
         UPDATE renewal_info

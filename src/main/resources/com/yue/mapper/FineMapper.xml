@@ -6,6 +6,7 @@
 
     <resultMap id="fineResultMap" type="com.yue.entity.FineInfo">
         <id property="id" column="id" />
+        <result property="borrowId" column="borrow_id"/>
         <result property="userId" column="user_id" />
         <result property="bookId" column="book_id" />
         <result property="fineAmount" column="fine_amount" />

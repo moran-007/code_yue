@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 public class FineInfo {
 
   private long id;
+  private int borrowId;
   private long userId;
   private long bookId;
   private String userName;
@@ -21,8 +22,9 @@ public class FineInfo {
   public FineInfo() {
   }
 
-  public FineInfo(long id, long userId, long bookId, String userName, String bookTitle, double fineAmount, Timestamp fineTime, long status) {
+  public FineInfo(long id, int borrowId, long userId, long bookId, String userName, String bookTitle, double fineAmount, Timestamp fineTime, long status) {
     this.id = id;
+    this.borrowId = borrowId;
     this.userId = userId;
     this.bookId = bookId;
     this.userName = userName;
@@ -36,6 +38,7 @@ public class FineInfo {
   public String toString() {
     return "FineInfo{" +
             "id=" + id +
+            ", borrowId=" + borrowId +
             ", userId=" + userId +
             ", bookId=" + bookId +
             ", userName='" + userName + '\'' +
@@ -54,6 +57,13 @@ public class FineInfo {
     this.id = id;
   }
 
+  public int getBorrowId() {
+    return borrowId;
+  }
+
+  public void setBorrowId(int borrowId) {
+    this.borrowId = borrowId;
+  }
 
   public long getUserId() {
     return userId;
