@@ -46,6 +46,7 @@
     <select id="selectAllRenewal" resultMap="renewalResultMap">
         SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark,user_name,book_title
         FROM renewal_info
+        ORDER BY status
     </select>
     <select id="selectRenewalByUserId" resultMap="renewalResultMap" parameterType="int">
         SELECT id, reserve_id, user_id, renewal_time, admin_id, status, remark,user_name,book_title
@@ -70,6 +71,9 @@
             </if>
             <if test="bookTitle!=null and bookTitle != ''">
                 and book_title like concat('%',#{bookTitle},'%')
+            </if>
+            <if test="userId!=null and userId != ''">
+                and user_id = #{userId}
             </if>
         </where>
     </select>

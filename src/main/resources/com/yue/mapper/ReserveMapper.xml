@@ -76,6 +76,9 @@
         <if test="bookTitle!=null and bookTitle != ''">
             and book_title like concat('%',#{bookTitle},'%')
         </if>
+            <if test="userId!=null and userId != ''">
+                and user_id = #{userId}
+            </if>
         </where>
     </select>
 

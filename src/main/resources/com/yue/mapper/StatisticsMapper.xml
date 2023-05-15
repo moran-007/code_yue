@@ -18,6 +18,7 @@
     <!-- 查询所有统计信息 -->
     <select id="selectAllStatistics" resultMap="statisticsResultMap">
         SELECT * FROM statistics_info
+        ORDER BY borrow_count DESC
     </select>
 
     <!-- 根据书籍类型查询统计信息 -->
